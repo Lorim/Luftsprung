@@ -18,61 +18,7 @@ class IndexController extends Zend_Controller_Action {
         
     }
     
-    public function newsAction() {
-        $oNews = new Application_Model_NewsMapper();
-        $oEntry = new Application_Model_News();
-        $layout = $this->_helper->layout();
-        $iNewsid = $this->_getParam('id');
-        $basePath = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost();
-        $aPreload = array();
-        if($iNewsid) {
-            $this->_helper->viewRenderer->setRender('newsid');
-            $oNewsEntry = $oNews->find($this->_getParam('id'), $oEntry);
-            $this->_helper->layout()->getView()->headTitle($oNewsEntry->getTitle(), 
-                    Zend_View_Helper_Placeholder_Container_Abstract::SET);
-            $this->view->news = $oNewsEntry;
-            $layout->teaser = $oNewsEntry->teaser;
-            foreach($oNewsEntry->pictures as $aPic) {
-                $aPictures[] = $basePath . $aPic['original'];
-                $aPreload[] = $aPic['original'];
-            }
-            $layout->ogPictures = $aPictures;
-        } else {
-            $paginator = Zend_Paginator::factory($oNews->findNews());
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(2);
-            $this->view->news = $paginator;
-            $layout->teaser = $paginator->getItem(1)->teaser;
-            foreach($paginator->getItem(1)->pictures as $aPic) {
-                $aPictures[] = $basePath . $aPic['original'];
-                $aPreload[] = $aPic['original'];
-            }
-            $layout->ogPictures = $aPictures;
-        }
-        
-        $this->_helper->layout()->aPreload = $aPreload;
-        
-        $form = new Application_Form_Comment();
-        $form->getElement('active')->setValue(0);
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            if ($form->isValid($request->getParams())) {
-                $comment = new Application_Model_Comment($form->getValues());
-                $mapper = new Application_Model_CommentMapper();
-                $mapper->save($comment);
-                $form->reset();
-                $fm = new Zend_Controller_Action_Helper_FlashMessenger();
-                $fm->addMessage('Dein Kommentar war erfolgreich. Er wird<br>angezeigt sobald er freigegeben wurde.');
-            }
-            $this->view->commentsubmit = true;
-        }
-        
-        $guestbook = new Application_Model_CommentMapper();
-        $this->view->comments = $guestbook;
-        $this->view->form = $form;
-        
-    }
-
+    
     public function galleryAction() {
         $basePath = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost();
         $oGallery = new Application_Model_GalleryMapper();
@@ -126,35 +72,6 @@ class IndexController extends Zend_Controller_Action {
         $this->_helper->redirector->gotoUrl($this->getRequest()->getServer('HTTP_REFERER'));
     }
 
-    public function editnewsAction() {
-        $gb = new Application_Model_CommentMapper();
-        $comment = $gb->find($this->_getParam('comment'), new Application_Model_Comment());
-
-        switch ($this->_getParam('c')) {
-            case 'enable':
-                $comment->setActive(1);
-                $gb->save($comment);
-                break;
-
-            case 'disable':
-                $comment->setActive(0);
-                $gb->save($comment);
-                break;
-            case 'delete':
-                $gb->delete($comment);
-                break;
-        }
-
-        $this->_helper->redirector->gotoUrl($this->getRequest()->getServer('HTTP_REFERER'));
-
-        $this->_helper->redirector->gotoRoute(
-                array(
-                    'controller' => 'index',
-                    'action' => 'index'
-                )
-        );
-    }
-
     public function kontaktAction() {
         $form = new Application_Form_Kontakt();
 
@@ -167,8 +84,6 @@ class IndexController extends Zend_Controller_Action {
                 $view->setScriptPath(APPLICATION_PATH . "/views/scripts/mail");
                 $view->form = $form->getValues();
                 $html = $view->render('kontakt.phtml');
-                //Zend_Debug::dump($view);
-                //die();
                 $mail = new Zend_Mail('UTF-8');
                 $mail->setFrom("gallery@se519.de")
                         ->addTo("steffen@se519.de")

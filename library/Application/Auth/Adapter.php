@@ -9,8 +9,8 @@ class Application_Auth_Adapter implements Zend_Auth_Adapter_Interface {
 	
 	public function authenticate() {
 		$users = array (
-				'se519' => array(
-						'pwd' => '07318se1907',
+				'admin' => array(
+						'pwd' => 'test',
 						'group' => 'admin'
 						)
 		);

@@ -28,56 +28,38 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
          */
         $router = $frontController->getRouter();
         $router->addRoute(
-                'loginroute', new Zend_Controller_Router_Route(
+            'loginroute', new Zend_Controller_Router_Route(
                 'login', array(
-            'controller' => 'index',
-            'action' => 'login'
+                    'controller' => 'index',
+                    'action' => 'login'
                 )
-                )
+            )
         );
         $router->addRoute(
-                'gallery', new Zend_Controller_Router_Route(
+            'gallery', new Zend_Controller_Router_Route(
                 'gallery/:tag/:id', array(
-            'controller' => 'index',
-            'action' => 'gallery',
-            'id' => '',
-            'tag' => ''
+                    'controller' => 'index',
+                    'action' => 'gallery',
+                    'id' => '',
+                    'tag' => ''
                 ), array('id' => '\d+', 'tag' => '\w+')
-                )
+            )
         );
         $router->addRoute(
-                'news', new Zend_Controller_Router_Route(
-                'news/:id', array(
-            'controller' => 'index',
-            'action' => 'news',
-            'id' => ''
-                ), array('id' => '\d+')
-                )
-        );
-        $router->addRoute(
-                'newsview', new Zend_Controller_Router_Route(
-                'news/page/:page', array(
-            'controller' => 'index',
-            'action' => 'news',
-            'page' => ''
-                ), array('page' => '\d+')
-                )
-        );
-        $router->addRoute(
-                'kontakt', new Zend_Controller_Router_Route(
+            'kontakt', new Zend_Controller_Router_Route(
                 'kontakt/', array(
-            'controller' => 'index',
-            'action' => 'kontakt'
+                    'controller' => 'index',
+                    'action' => 'kontakt'
                 )
-                )
+            )
         );
         $router->addRoute(
-                'impressum', new Zend_Controller_Router_Route(
+            'impressum', new Zend_Controller_Router_Route(
                 'impressum/', array(
-            'controller' => 'index',
-            'action' => 'impressum'
+                    'controller' => 'index',
+                    'action' => 'impressum'
                 )
-                )
+            )
         );
         $this->bootstrap('view');
         $view = $this->getResource('view');
@@ -92,14 +74,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         if ($auth->hasIdentity()) {
             $navigation->addPage(
-                    new Zend_Config(
+                new Zend_Config(
                     array(
-                'label' => 'Logout',
-                'controller' => 'index',
-                'action' => 'logout',
-                'route' => 'default'
+                        'label' => 'Logout',
+                        'controller' => 'index',
+                        'action' => 'logout',
+                        'route' => 'default'
                     )
-                    )
+                )
             );
         }
         $identity = $auth->getIdentity();
@@ -134,6 +116,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view = $this->getResource('view');
 
         $view->baseUrl = $view->baseUrl();
+        
+        $style = new Zend_Session_Namespace('style');
+        
         $css = array(
             '/css/bootstrap.css',
             '/css/bootstrap-notify.css',
