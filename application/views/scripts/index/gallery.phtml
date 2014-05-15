@@ -1,59 +1,38 @@
-<div class="row">
-    <div class="col-lg-9 col-md-12">
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <article class="thisbox">
-                        <div class="head">
-                            <span>&nbsp;</span>
-                        </div>
-                        <div class="body" style="min-height: 200px;">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <?php 
-                                    $i = 0;
-                                    foreach ($this->entry as $entry) {
-                                        if(!count($entry->previews)) continue;
-                                        $gallerypath = $this->url(array(
-                                                                'controller' => 'index',
-                                                                'action' => 'gallery',
-                                                                'id' => $entry->id
-                                                            ), 'gallery');
-                                        ?>
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 thumbnails">
-                                            <div class="thumbnail">
-                                                <a href="<?php echo $gallerypath; ?>" class="caption center-block">
-                                                    <strong><?php echo $entry->title; ?></strong>
-                                                </a>
-                                                <div class="carousel owl-carousel" data-interval="<?php echo rand(4000,8000); ?>" data-autoheight="false">
-                                                    <?php
-                                                    $pictures = $entry->previews;
-                                                    foreach($pictures as $pic) { 
-                                                    $pic = $entry->previewToPic($pic);
-                                                    ?>
-                                                    <a href="<?php echo $gallerypath; ?>">
-                                                        <img class="lazyOwl center-block" data-src="<?php echo $pic['thumb']; ?>">
-                                                    </a>
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php 
-                                    ++$i;
-                                    if($i%2 == 0) {
-                                        echo "<div class='visible-xs clearfix '></div>";
-                                    } elseif($i%3 == 0) {
-                                        echo "<div class='hidden-xs clearfix '></div>";
-                                    }
-                                    } ?>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-    </div>
-    <?php
-    echo $this->render('widgets/profile.phtml');
-    ?>
+<?php
+$galleries = array(
+    array(
+        'id' => 1,
+        'name' => 'Caro',
+        'pic' => "/pictures/beitragsbild-480x640.png"
+    ),
+    array(
+        'id' => 1,
+        'name' => 'Janine',
+        'pic' => "/pictures/3100swweb-480x640.jpg"
+    ),
+    array(
+        'id' => 1,
+        'name' => 'Pauline',
+        'pic' => "/pictures/beitragsbild-480x640.png"
+    ),
+    array(
+        'id' => 1,
+        'name' => 'Die Brüder König',
+        'pic' => "/pictures/beitragsbild-480x640.png"
+    ),
+    array(
+        'id' => 1,
+        'name' => 'Caro',
+        'pic' => "/pictures/beitragsbild-480x640.png"
+    ),
+);
+?>
+
+<div class="row lightbox">
+    <?php foreach ($galleries as $gallery): ?>
+        <div class="col-md-3 col-sm-3 col-xs-12 image">
+            <img src="<?php echo $gallery['pic']; ?>" class="boxed">
+            <div class="overlay"><?php echo $gallery['name'];?></div>
+        </div>
+    <?php endforeach; ?>
 </div>
