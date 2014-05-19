@@ -23,6 +23,10 @@ class AdminController extends Zend_Controller_Action
     	$this->view->entries = $guestbook->fetchAll();
     }
     
+    public function galleryAction()
+    {
+        
+    }
     public function addgalleryAction()
     {
         $this->_helper->layout()->disableLayout();

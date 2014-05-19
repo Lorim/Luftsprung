@@ -11,7 +11,7 @@ class Application_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         
         $resource = $request->getControllerName();
         $privilege = $request->getActionName();
-
+        
         /*
          * pass article updates
          */
@@ -31,7 +31,11 @@ class Application_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         }
 
         if (! $acl->isAllowed($identity, $resource, $privilege)) {
-            throw new Zend_Controller_Action_Exception('Not found', 404);
+            $request->setControllerName('index');
+            $request->setActionName('login');
+
+            //var_dump($resource, $privilege, $identity);
+            //throw new Zend_Controller_Action_Exception('Not found', 404);
         }
     }
 }

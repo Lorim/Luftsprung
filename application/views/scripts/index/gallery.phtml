@@ -30,9 +30,14 @@ $galleries = array(
 
 <div class="row lightbox">
     <h1 class="text-center">Zimt & Zucker</h1>
+    <div class="col-md-12">
+    <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+    </div>
     <?php foreach ($galleries as $gallery): ?>
         <div class="col-md-3 col-sm-3 col-xs-12 image">
-            <img src="<?php echo $gallery['pic']; ?>" class="boxed">
+            <img src="<?php echo $gallery['pic']; ?>" class="boxed" data-pin-no-hover="true">
             <div class="overlay"><?php echo $gallery['name'];?></div>
         </div>
     <?php endforeach; ?>

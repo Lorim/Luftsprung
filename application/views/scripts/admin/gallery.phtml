@@ -1,68 +1,26 @@
-<table class="datatable table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>Datum</th>
-            <th>Titel</th>
-            <th>Pfad</th>
-            <th>Tag</th>
-            <th style="width: 150px;">Vorschau</th>
-            <th>Aktiv</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $aActive = array(
-            "0" => "Inaktiv", 
-            "1" => "Aktiv",
-            "-1" => "entfernen"
-            );
-        $tags = ""
-                . "[{value: 'Themen', text: 'Themen'},"
-                . "{value: 'Portrait', text: 'Portrait'},"
-                . "{value: 'Diverses', text: 'Diverses'}]"
-                . "";
-        foreach ($this->entries as $entry) {
-            echo "<tr>";
-            printf("<td><a href='#' class='editable2' data-type='date' data-name='created' data-title='Erstellungsdatum' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->created);
-            printf("<td><a href='#' class='editable2' data-type='text' data-name='title' data-title='Titel' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->title);
-            printf("<td><a href='#' class='editable2' data-type='select' data-name='path' data-title='Pfad' data-type='text' data-pk='%d' data-value='%s' data-source='/admin/getpaths'>%s</a></td>", $entry->id, $entry->path, $entry->path);
-            ?>
-            <td><a href='#' class='editable2' data-type='select' data-source="<?php echo $tags;?>" data-name='tag' data-value='<?php echo $entry->tag;?>' data-emptytext='' data-title='Tag' data-type='select' data-pk='<?php echo $entry->id;?>'><?php echo $entry->tag;?></a></td>
-            <?php
-            printf("<td><button data-toggle='modal' data-target='#previewModal' href='/admin/getpreviewpic/pk/%d' type='button' class='btn btn-primary btn-xs'>Vorschau festlegen</button></td>", $entry->id);
-            printf("<td><a href='#' class='editable2' data-type='select' data-source='%s' data-name='active' data-value='%s' data-emptytext='inaktiv' data-title='Active' data-type='select' data-pk='%d'>%s</a></td>", '[{value: "1", text: "Aktiv"},{value: 0, text: "Inaktiv"},{value: -1, text: "entfernen"}]', $entry->active,$entry->id, $aActive[$entry->active]);
-            echo "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
+<?php
+$navigation = Zend_Registry::get('nav');
+$oGalleries = $navigation->findAllBy('route', 'gallery');
 
-<h2>Neuer Eintrag</h2>
-
-<table id="user" class="table table-bordered table-striped">
-    <tbody> 
-        <tr>         
-            <td>Titel</td>
-            <td><a href="#" class=" editable new" data-type="text" data-name="title" data-mode="inline" data-original-title="Enter firstname"></a></td>
-        </tr>  
-        <tr>         
-            <td>Pfad</td>
-            <td><a href="#" class=" editable new" data-type="select" data-name="path" data-mode="inline" data-source="/admin/getpaths" data-original-title="Welche Bilder sollen angezeigt werden"></a></td>
-        </tr>
-        <tr>         
-            <td>Tag</td>
-            <td><a href="#" class=" editable new" data-type="select" data-name="tag" data-mode="inline" data-source="<?php echo $tags;?>" data-original-title="In welche Gallery"></a></td>
-        </tr> 
-        <tr>         
-            <td width="40%">Datum</td>
-            <td><a href="#" class=" editable new" data-type="date" data-name="created" data-viewformat="dd/mm/yyyy" data-original-title="Shootingdatum eingeben"></a></td>
-        </tr>
-        <tr>         
-            <td width="40%">Aktiv</td>
-            <td><a href="#" class=" editable new" data-type="select" data-source="[{value: '1', text: 'Aktiv'},{value: '0', text: 'Inaktiv'}]" data-name="active" data-value="0" data-viewformat="dd/mm/yyyy" data-original-title="News anzeigen"></a></td>
-        </tr>
-    </tbody>
-</table>
-<button id="save-btn2" class="btn btn-primary">Eintragen</button>
-
-<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+?>
+<div class="row lightbox">
+    <div class="col-md-3">
+        <div class="list-group">
+            <?php foreach($oGalleries as $gallery): ?>
+            <a href="#" class="list-group-item"><?php echo $gallery->label;?></a>
+            <?php endforeach;?>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="col-md-12">
+            <textarea></textarea>
+    </div>
+    </div>
+    <h1 class="text-center">Zimt & Zucker</h1>
+    <div class="col-md-12">
+        <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+    </div>
+    
+</div>

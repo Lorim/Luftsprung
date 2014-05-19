@@ -28,7 +28,7 @@ class Application_Controller_Helper_Acl {
     private function setPrivileges() {
         //$this->acl->allow(null,null);
         $this->acl->allow(
-                "guest", array("index"), null);
+                "guest", array("index", "error"), null);
 
         $this->acl->allow(
                 null, array(

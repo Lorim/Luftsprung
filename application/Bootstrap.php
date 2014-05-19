@@ -122,6 +122,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $css = array(
             '/css/bootstrap.css',
             '/css/bootstrap-notify.css',
+            '/css/bootstrap-treeview.css',
             '/css/site.css',
         );
         foreach ($css as $file) {
@@ -131,6 +132,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/js/jquery-2.0.3.js',
             '/js/bootstrap.js',
             '/js/bootstrap-notify.js',
+            '/js/dropzone.js',
+            '/js/tinymce/tinymce.min.js',
+            '/js/bootstrap-treeview.js',
         );
         foreach ($js as $file) {
             $view->headScript()->appendFile($view->baseUrl($file));

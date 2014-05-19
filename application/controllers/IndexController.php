@@ -37,6 +37,7 @@ class IndexController extends Zend_Controller_Action {
         } else {
             $this->view->entry = $oGallery->findGalleries($sGalleryTag);
         }
+        Zend_Debug::dump($this->view->entry);
     }
 
 

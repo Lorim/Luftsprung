@@ -1,37 +1,6 @@
 $(document).ready(function() {
 
     $("[title]").tooltip();
-
-    $('.slide').click(function(event) {
-        event = event || window.event;
-        var target = event.target || event.srcElement,
-                link = target.src ? target.parentNode : target,
-                options = {
-                    index: link,
-                    event: event,
-                    fullScreen: true,
-                    stretchImages: true,
-                    slideshowInterval: 4000,
-                },
-                links = this.getElementsByTagName('a');
-        blueimp.Gallery(links, options);
-    });
-    $('.carousel').each(function() {
-        $(this).owlCarousel({
-            autoPlay : $(this).data('interval'),
-            stopOnHover : true,
-            navigation:false,
-            lazyLoad : true,
-            slideSpeed : 800,
-            paginationSpeed : 2000,
-            pagination: true,
-            goToFirstSpeed : 2000,
-            singleItem : true,
-            autoHeight : $(this).data('autoheight'),
-            transitionStyle:"fadeUp"
-        });
-
-    });
     
     $('.notifications').notify({
         fadeOut: {
@@ -40,5 +9,23 @@ $(document).ready(function() {
         },
         type: 'bangTidy'
     }).show();
+    
+    tinymce.init({
+    selector: "textarea",theme: "modern",width: 680,height: 300,
+    plugins: [
+         "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+         "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+         "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
+   ],
+   toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+   toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+   image_advtab: true ,
+   
+   external_filemanager_path:"/filemanager/",
+   filemanager_title:"Responsive Filemanager" ,
+   external_plugins: { "filemanager" : "/filemanager/plugin.min.js"}
+ });
+
+
 });
 
