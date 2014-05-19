@@ -11,7 +11,7 @@ $(document).ready(function() {
     }).show();
     
     tinymce.init({
-    selector: "textarea",theme: "modern",width: 680,height: 300,
+    selector: "textarea",theme: "modern",height: 300,
     plugins: [
          "advlist autolink link image lists charmap print preview hr anchor pagebreak",
          "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",

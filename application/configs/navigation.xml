@@ -150,22 +150,6 @@
             <resource>admin</resource>
             <privilege>index</privilege>
             <pages>
-                <comment>
-                    <label>Kommentare</label>
-                    <controller>admin</controller>
-                    <route>default</route>
-                    <action>comments</action>
-                    <resource>admin</resource>
-                    <privilege>comments</privilege>
-                </comment>
-                <news>
-                    <label>News</label>
-                    <controller>admin</controller>
-                    <route>default</route>
-                    <action>news</action>
-                    <resource>admin</resource>
-                    <privilege>news</privilege>
-                </news>
                 <gallery>
                     <label>Gallery</label>
                     <controller>admin</controller>
