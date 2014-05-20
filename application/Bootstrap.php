@@ -132,7 +132,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/js/jquery-2.0.3.js',
             '/js/bootstrap.js',
             '/js/bootstrap-notify.js',
-            '/js/dropzone.js',
             '/js/tinymce/tinymce.min.js',
             '/js/bootstrap-treeview.js',
         );

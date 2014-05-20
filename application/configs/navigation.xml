@@ -5,6 +5,7 @@
             <label>Portraits</label>
             <controller></controller>
             <route>default</route>
+            <id>gallery</id>
             <resource>index</resource>
             <privilege>gallery</privilege>
             <pages>
@@ -47,6 +48,7 @@
             <label>Liebe</label>
             <controller></controller>
             <route>default</route>
+            <id>gallery</id>
             <resource>index</resource>
             <privilege>gallery</privilege>
             <pages>
@@ -89,6 +91,7 @@
             <label>Baby</label>
             <controller></controller>
             <route>default</route>
+            <id>gallery</id>
             <resource>index</resource>
             <privilege>gallery</privilege>
             <pages>
