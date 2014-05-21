@@ -26,10 +26,9 @@ class JsonController extends Zend_Controller_Action {
                     foreach($gallery->getPages() as $oPage) {
                         $aSubentry = array();
                         $aSubentry['text'] = $oPage->getLabel();
+                        $aEntry['nodes'][] = $aSubentry;
                     }
-                    $aEntry['nodes'] = $aSubentry;
                 }
-                
                 $aReturn[] = $aEntry;
             }
         }
@@ -37,7 +36,7 @@ class JsonController extends Zend_Controller_Action {
         echo json_encode($aReturn);
         /*
          * 
-         * var tree = [
+         * var tree2 = [
             {
                 text: "Parent 1",
                 nodes: [

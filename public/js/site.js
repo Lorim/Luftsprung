@@ -26,43 +26,21 @@ $(document).ready(function() {
     });
 
     function getTree() {
-        var jqxhr = $.getJSON("/json/galleries", function() {
-            console.log("success");
-        })
-                .done(function() {
-                    tree = jQuery.parseJSON(jqxhr);
-                    console.log(tree);
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-                });
-        var tree = [
-            {
-                text: "Parent 1",
-                nodes: [
-                    {
-                        text: "Child 1",
-                        nodes: [
-                            {
-                                text: "Grandchild 1"
-                            },
-                            {
-                                text: "Grandchild 2"
-                            }
-                        ]
-                    },
-                    {
-                        text: "Child 2"
-                    }
-                ]
-            }
-        ];
-        return tree;
+        $.ajax({
+            url: "/json/galleries",
+            dataType: 'json'
+        }).done(function( data ){
+            $('#tree').treeview({
+                data: data,
+                levels: 1,
+            });
+        });
     }
-
-    $('#tree').treeview({data: getTree()});
+    getTree();
+    
+    $('#tree').on('nodeSelected', function(event, node) {
+    console.log(node);
+    
+});
 });
 
