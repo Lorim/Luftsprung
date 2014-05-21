@@ -26,37 +26,21 @@ class JsonController extends Zend_Controller_Action {
                     foreach($gallery->getPages() as $oPage) {
                         $aSubentry = array();
                         $aSubentry['text'] = $oPage->getLabel();
+                        $aSubentry['element'] = $oPage->getParam('tag');
                         $aEntry['nodes'][] = $aSubentry;
                     }
                 }
                 $aReturn[] = $aEntry;
             }
         }
-        
         echo json_encode($aReturn);
-        /*
-         * 
-         * var tree2 = [
-            {
-                text: "Parent 1",
-                nodes: [
-                    {
-                        text: "Child 1",
-                        nodes: [
-                            {
-                                text: "Grandchild 1"
-                            },
-                            {
-                                text: "Grandchild 2"
-                            }
-                        ]
-                    },
-                    {
-                        text: "Child 2"
-                    }
-                ]
-            }
-        ];
-         */
+    }
+    
+    public function loadgallerieAction() {
+        $tag = $this->_request->getParam('tag');
+        $this->view->tag = $tag;
+        $output = $this->view->render('json/gallery.phtml');
+        
+        echo $output;
     }
 }

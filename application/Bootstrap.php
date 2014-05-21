@@ -123,6 +123,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/css/bootstrap.css',
             '/css/bootstrap-notify.css',
             '/css/bootstrap-treeview.css',
+            '/css/jquery.gridster.css',
             '/css/site.css',
         );
         foreach ($css as $file) {
@@ -133,6 +134,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/js/bootstrap.js',
             '/js/bootstrap-notify.js',
             '/js/tinymce/tinymce.min.js',
+            '/js/jquery.gridster.js',
             '/js/bootstrap-treeview.js',
         );
         foreach ($js as $file) {

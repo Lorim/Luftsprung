@@ -33,14 +33,27 @@ $(document).ready(function() {
             $('#tree').treeview({
                 data: data,
                 levels: 1,
+                selectLeafOnly: true,
             });
         });
     }
     getTree();
     
     $('#tree').on('nodeSelected', function(event, node) {
-    console.log(node);
+        console.log(node);
+        $.get( "/json/loadgallerie/tag/" + node.element, function( data ) {
+            $( "#shootings" ).html( data );
+            initGridster();
+        });
+    });
     
-});
+    function initGridster() {
+        $(".gridster").gridster({
+            widget_margins: [10, 10],
+            widget_base_dimensions: [140, 140],
+            widget_selector: 'div',
+            max_cols: 3,
+        });
+    }
 });
 
