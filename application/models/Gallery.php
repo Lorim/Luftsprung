@@ -4,7 +4,6 @@ class Application_Model_Gallery
     protected $_id;
     protected $_created;
     protected $_title;
-    protected $_path;
     protected $_active;
     protected $_tag;
     protected $_pictures;
@@ -100,23 +99,6 @@ class Application_Model_Gallery
     public function getTag()
     {
         return $this->_tag;
-    }
-    
-    public function setPath($path)
-    {
-    	$this->_path = (string) $path;
-
-        $aList = glob(APPLICATION_PATH.'/../public/images/'.$path."/*.jpg");
-        $aPictures = array();
-        foreach($aList as $sPicture) {
-            $aPictures[] = array(
-               "original" => "/images/" . $path . "/" . basename($sPicture),
-               "thumb" => Application_Model_Thumb::getThumb("/images/" . $path . "/" . basename($sPicture))
-            );
-            
-        }
-        $this->_pictures = $aPictures;
-    	return $this;
     }
     
     public function previewToPic($sPic)

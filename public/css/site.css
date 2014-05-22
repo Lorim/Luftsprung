@@ -80,3 +80,10 @@ ul .dropdown-menu {
     font-weight: bold;
     pointer-events: none;
 }
+#shootings * {
+    text-decoration: none !important;
+}
+#shootings .boxed:hover {
+    
+    cursor: pointer;
+}

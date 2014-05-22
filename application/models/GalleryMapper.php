@@ -46,7 +46,6 @@ class Application_Model_GalleryMapper {
         $data = array(
             'created' => $gallery->getCreated(),
             'title' => $gallery->getTitle(),
-            'path' => $gallery->getPath(),
             'active' => $gallery->getActive(),
             'tag' => $gallery->getTag()
         );
@@ -93,7 +92,6 @@ class Application_Model_GalleryMapper {
         $gallery->setId($row->id)
                 ->setCreated($row->created)
                 ->setTitle($row->title)
-                ->setPath($row->path)
                 ->setTag($row->tag)
                 ->setActive($row->active)
                 ->setPreviews($this->findPreviews($row->id));
@@ -110,7 +108,6 @@ class Application_Model_GalleryMapper {
             $entry->setId($row->id)
                     ->setCreated($row->created)
                     ->setTitle($row->title)
-                    ->setPath($row->path)
                     ->setTag($row->tag)
                     ->setActive($row->active)
                     ->setPreviews($this->findPreviews($row->id));
@@ -162,7 +159,6 @@ class Application_Model_GalleryMapper {
             $entry->setId($row->id)
                     ->setCreated($row->created)
                     ->setTitle($row->title)
-                    ->setPath($row->path)
                     ->setActive($row->active)
                     ->setTag($row->tag)
                     ->setPreviews($this->findPreviews($row->id));

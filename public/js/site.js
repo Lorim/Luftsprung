@@ -40,20 +40,29 @@ $(document).ready(function() {
     getTree();
     
     $('#tree').on('nodeSelected', function(event, node) {
-        console.log(node);
         $.get( "/json/loadgallerie/tag/" + node.element, function( data ) {
+            $("#gallerytag").val(node.element);
             $( "#shootings" ).html( data );
-            initGridster();
         });
     });
     
-    function initGridster() {
-        $(".gridster").gridster({
-            widget_margins: [10, 10],
-            widget_base_dimensions: [140, 140],
-            widget_selector: 'div',
-            max_cols: 3,
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+    
+    
+    $('#updateGallery').on('click', function() {     
+        $.post( "/admin/addgallery/title/" + $('#galleriename').val()
+                + "/created/" + $('#datum').val()
+                + "/tag/" + $('#gallerytag').val())
+        .done(function(data) {
+            
         });
-    }
+
+        $.get( "/json/loadgallerie/tag/" + $('#gallerytag').val(), function( data ) {
+            $( "#shootings" ).html( data );
+        });
+        $('#galleryModal').modal('hide');
+    });
 });
 

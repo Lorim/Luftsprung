@@ -34,12 +34,11 @@ class AdminController extends Zend_Controller_Action
             $oEntry = new Application_Model_Gallery();
             $oEntry->setTitle($this->_request->getParam('title'));
             $oEntry->setCreated($this->_request->getParam('created'));
-            $oEntry->setPath($this->_request->getParam('path'));
             $oEntry->setTag($this->_request->getParam('tag'));
-            $oEntry->setActive($this->_request->getParam('active', 0));
+            $oEntry->setActive($this->_request->getParam('active', 1));
             $oNews->save($oEntry);
             $fm = new Zend_Controller_Action_Helper_FlashMessenger();
-            $fm->addMessage('Die Gallerie wurde erstellt :) <br> Fehlen noch die Vorschaubilder.');
+            //$fm->addMessage('Die Gallerie wurde erstellt :) <br> Fehlen noch die Vorschaubilder.');
         }  catch (Exception $e) {
             echo $this->view->json(array("success" => false));
         }

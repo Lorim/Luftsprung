@@ -1,13 +1,21 @@
 <h1><?php echo $this->tag; ?></h1>
 
-<div class="row gridster">
-    <div class="col-md-3" data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <img src="http://placehold.it/316x150/e5e3d7&text=Box_1" class="boxed">
-  </div>
-    <div class="col-md-3" data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-        <img src="http://placehold.it/316x150/e5e3d7&text=Box_2" class="boxed" data-pin-no-hover="true">
+<div class="row">
+    
+    <?php foreach($this->entries as $entry):?>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <img src="http://placehold.it/316x150/e5e3d7&text=<?php echo $entry->getTitle();?>" class="boxed" data-pin-no-hover="true">
     </div>
-    <div class="col-md-3" data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-        <img src="http://placehold.it/316x150/e5e3d7&text=Box_3" class="boxed" data-pin-no-hover="true">
+    <?php endforeach;?>
+    <div class="col-md-4">
+        <a data-toggle="modal" data-target="#galleryModal">
+            <div class="boxed">
+                <div>
+                    <span class=" glyphicon glyphicon-plus center-block" style="font-size: 45px;"></span>
+                </div>
+                <br>
+                <p class="text-primary center-block text-center">Neue Gallerie</p>
+            </div>
+        </a>
     </div>
 </div>
