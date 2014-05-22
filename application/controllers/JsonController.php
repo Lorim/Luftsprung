@@ -38,13 +38,17 @@ class JsonController extends Zend_Controller_Action {
     
     public function loadgallerieAction() {
         $tag = $this->_request->getParam('tag');
-        
         $oGalleries = new Application_Model_GalleryMapper();
     	$this->view->entries = $oGalleries->findGalleries($tag);
-        
         $this->view->tag = $tag;
         $output = $this->view->render('json/gallery.phtml');
-        
         echo $output;
+    }
+    public function loadgalleriemodalAction() {
+        $id = $this->_request->getParam('gallerieid', NULL);
+        $oGalleries = new Application_Model_GalleryMapper();
+        $this->view->entry = $oGalleries->find($id, new Application_Model_Gallery);
+        
+        $this->_helper->viewRenderer->setNoRender(false);
     }
 }

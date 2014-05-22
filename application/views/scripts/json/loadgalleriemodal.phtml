@@ -1,24 +1,9 @@
-<div class="row lightbox">
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-4">
-                <div id="tree"></div>
-            </div>
-            <div class="col-md-8">
-                <div class="col-md-12" id="shootings">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal -->
-<div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Neue Gallery</h4>
+                <h4 class="modal-title" id="myModalLabel"><?php echo $this->entry->getTitle();?></h4>
             </div>
             <input type="hidden" name="tag" id="gallerytag" value="" >
             <input type="hidden" name="galleryid" id="galleryid" value="" >
@@ -27,13 +12,13 @@
                     <div class="form-group">
                         <label for="galleriename" class="col-sm-2 control-label">Galleriename</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="galleriename" placeholder="Galleriename">
+                            <input type="text" class="form-control" id="galleriename" placeholder="Galleriename" value="<?php echo $this->entry->getTitle();?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="datum" class="col-sm-2 control-label">Datum</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control datepicker" id="datum" >
+                            <input type="text" class="form-control datepicker" id="datum" value="<?php echo $this->entry->getCreated();?>">
                         </div>
                     </div>
                 </form>
@@ -45,4 +30,3 @@
             </div>
         </div>
     </div>
-</div>

@@ -1,16 +1,19 @@
 <div class="row">
-
-    <?php foreach ($this->entries as $entry): ?>
+    <?php foreach ($this->entries as $entry): 
+        $url = "/json/loadgalleriemodal/gallerieid/".$entry->getId();
+        ?>
     <div class="col-md-3 col-sm-3 col-xs-12 image">
-        <img src="http://placehold.it/480x640/e5e3d7&text=%20" class="boxed" data-pin-no-hover="true">
-        <div class="overlay">
-            <?php echo $entry->getTitle(); ?> <br>
-            <?php echo $entry->getCreated(); ?>
-        </div>
+        <a data-toggle="modal" data-target="#galleryModal" data-remote="<?php echo $url;?>">
+            <img src="http://placehold.it/480x640/e5e3d7&text=%20" class="boxed" data-pin-no-hover="true">
+            <div class="overlay">
+                <?php echo $entry->getTitle(); ?> <br>
+                <?php echo $entry->getCreated(); ?>
+            </div>
+        </a>
     </div>
     <?php endforeach; ?>
     <div class="col-md-3">
-        <a data-toggle="modal" data-target="#galleryModal">
+        <a data-toggle="modal" data-target="#galleryModal" data-remote="/json/loadgalleriemodal">
             <div class="boxed">
                 <div>
                     <span class=" glyphicon glyphicon-plus center-block" style="font-size: 45px;"></span>

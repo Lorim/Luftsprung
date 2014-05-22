@@ -85,7 +85,7 @@ class Application_Model_GalleryMapper {
     public function find($id, Application_Model_Gallery $gallery) {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
-            return;
+            return $gallery;
         }
         $row = $result->current();
         

@@ -50,19 +50,25 @@ $(document).ready(function() {
         format: 'yyyy-mm-dd'
     });
     
-    
-    $('#updateGallery').on('click', function() {     
-        $.post( "/admin/addgallery/title/" + $('#galleriename').val()
-                + "/created/" + $('#datum').val()
-                + "/tag/" + $('#gallerytag').val())
-        .done(function(data) {
-            
-        });
+    $('body').on('show.bs.modal', function () {
+        console.log("show");
+        bindSend();
+    });
+    bindSend();
+    function bindSend() {
+        $('#updateGallery').on('click', function() {     
+            $.post( "/admin/addgallery/title/" + $('#galleriename').val()
+                    + "/created/" + $('#datum').val()
+                    + "/tag/" + $('#gallerytag').val());
 
-        $.get( "/json/loadgallerie/tag/" + $('#gallerytag').val(), function( data ) {
-            $( "#shootings" ).html( data );
-        });
-        $('#galleryModal').modal('hide');
+            $.get( "/json/loadgallerie/tag/" + $('#gallerytag').val(), function( data ) {
+                $( "#shootings" ).html( data );
+            });
+            $('#galleryModal').modal('hide');
+        }); 
+    };
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
     });
 });
 
