@@ -1,13 +1,15 @@
-<h1><?php echo $this->tag; ?></h1>
-
 <div class="row">
-    
-    <?php foreach($this->entries as $entry):?>
-    <div class="col-md-4 col-sm-4 col-xs-12">
-        <img src="http://placehold.it/316x150/e5e3d7&text=<?php echo $entry->getTitle();?>" class="boxed" data-pin-no-hover="true">
+
+    <?php foreach ($this->entries as $entry): ?>
+    <div class="col-md-3 col-sm-3 col-xs-12 image">
+        <img src="http://placehold.it/480x640/e5e3d7&text=%20" class="boxed" data-pin-no-hover="true">
+        <div class="overlay">
+            <?php echo $entry->getTitle(); ?> <br>
+            <?php echo $entry->getCreated(); ?>
+        </div>
     </div>
-    <?php endforeach;?>
-    <div class="col-md-4">
+    <?php endforeach; ?>
+    <div class="col-md-3">
         <a data-toggle="modal" data-target="#galleryModal">
             <div class="boxed">
                 <div>
