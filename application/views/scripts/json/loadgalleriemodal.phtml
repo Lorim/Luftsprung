@@ -5,8 +5,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel"><?php echo $this->entry->getTitle();?></h4>
             </div>
-            <input type="hidden" name="tag" id="gallerytag" value="" >
-            <input type="hidden" name="galleryid" id="galleryid" value="" >
+            <input type="hidden" name="tag" id="gallerytag" value="<?php echo $this->entry->getTag();?>" >
+            <input type="hidden" name="galleryid" id="galleryid" value="<?php echo $this->entry->getId();?>" >
             <div class="modal-body">
                 <form role="form" class="form-horizontal">
                     <div class="form-group">
@@ -20,6 +20,11 @@
                         <div class="col-sm-3">
                             <input type="text" class="form-control datepicker" id="datum" value="<?php echo $this->entry->getCreated();?>">
                         </div>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="delete"> Gallerie löschen
+                        </label>
                     </div>
                 </form>
 

@@ -11,7 +11,9 @@ $(document).ready(function() {
     }).show();
 
     tinymce.init({
-        selector: "textarea", theme: "modern", height: 300,
+        selector: "textarea",
+        theme: "modern",
+        height: 300,
         plugins: [
             "advlist autolink link image lists charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
@@ -22,14 +24,16 @@ $(document).ready(function() {
         image_advtab: true,
         external_filemanager_path: "/filemanager/",
         filemanager_title: "Responsive Filemanager",
-        external_plugins: {"filemanager": "/filemanager/plugin.min.js"}
+        external_plugins: {
+            "filemanager": "/filemanager/plugin.min.js"
+        }
     });
 
     function getTree() {
         $.ajax({
             url: "/json/galleries",
             dataType: 'json'
-        }).done(function( data ){
+        }).done(function(data) {
             $('#tree').treeview({
                 data: data,
                 levels: 1,
@@ -38,37 +42,37 @@ $(document).ready(function() {
         });
     }
     getTree();
-    
+
     $('#tree').on('nodeSelected', function(event, node) {
-        $.get( "/json/loadgallerie/tag/" + node.element, function( data ) {
+        $.get("/json/loadgallerie/tag/" + node.element, function(data) {
             $("#gallerytag").val(node.element);
-            $( "#shootings" ).html( data );
+            $("#shootings").html(data);
         });
     });
-    
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd'
-    });
-    
-    $('body').on('show.bs.modal', function () {
-        console.log("show");
-        bindSend();
-    });
-    bindSend();
-    function bindSend() {
-        $('#updateGallery').on('click', function() {     
-            $.post( "/admin/addgallery/title/" + $('#galleriename').val()
-                    + "/created/" + $('#datum').val()
-                    + "/tag/" + $('#gallerytag').val());
 
-            $.get( "/json/loadgallerie/tag/" + $('#gallerytag').val(), function( data ) {
-                $( "#shootings" ).html( data );
+    $(document).on('hidden.bs.modal', function(e) {
+        $(e.target).removeData('bs.modal');
+    });
+
+    $(document).on('shown.bs.modal', function(e) {
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('#updateGallery').on('click', function() {
+            if($('#delete').is(':checked')) {
+                $.post("/admin/deletegallery/id/" + $('#galleryid').val());
+            } else {
+                $.post("/admin/addgallery/title/" + $('#galleriename').val() + "/created/" + $('#datum').val() + "/tag/" + $('#gallerytag').val())
+                    .done(function(data) {
+                        
+                });
+            }
+            $.get("/json/loadgallerie/tag/" + $('#gallerytag').val(), function(data) {
+                $("#shootings").html(data);
             });
             $('#galleryModal').modal('hide');
-        }); 
-    };
-    $('body').on('hidden.bs.modal', '.modal', function () {
-        $(this).removeData('bs.modal');
+        });
     });
-});
 
+
+});

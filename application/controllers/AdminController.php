@@ -44,5 +44,16 @@ class AdminController extends Zend_Controller_Action
         }
         echo $this->view->json(array("success" => true, "id" => 1));
     }
+    public function deletegalleryAction() {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        try{
+            $oGalleries = new Application_Model_GalleryMapper();
+            $entry = $oGalleries->find($this->_request->getParam('id'), new Application_Model_Gallery);
+            $oGalleries->delete($entry);
+        }  catch (Exception $e) {
+            echo $this->view->json(array("success" => false));
+        }
+    }
 }
 

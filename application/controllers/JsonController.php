@@ -47,8 +47,9 @@ class JsonController extends Zend_Controller_Action {
     public function loadgalleriemodalAction() {
         $id = $this->_request->getParam('gallerieid', NULL);
         $oGalleries = new Application_Model_GalleryMapper();
-        $this->view->entry = $oGalleries->find($id, new Application_Model_Gallery);
-        
+        $entry = $oGalleries->find($id, new Application_Model_Gallery);
+        $this->view->entry = $entry;
+
         $this->_helper->viewRenderer->setNoRender(false);
     }
 }
