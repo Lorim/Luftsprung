@@ -39,7 +39,9 @@ $(document).ready(function() {
                 levels: 1,
                 selectLeafOnly: true,
             });
+            $('#tree').treeview('select', '3');
         });
+
     }
     getTree();
 
@@ -59,13 +61,13 @@ $(document).ready(function() {
             format: 'yyyy-mm-dd'
         });
         $('#updateGallery').on('click', function() {
-            if($('#delete').is(':checked')) {
+            if ($('#delete').is(':checked')) {
                 $.post("/admin/deletegallery/id/" + $('#galleryid').val());
             } else {
                 $.post("/admin/addgallery/title/" + $('#galleriename').val() + "/created/" + $('#datum').val() + "/tag/" + $('#gallerytag').val())
-                    .done(function(data) {
-                        
-                });
+                        .done(function(data) {
+
+                        });
             }
             $.get("/json/loadgallerie/tag/" + $('#gallerytag').val(), function(data) {
                 $("#shootings").html(data);
@@ -74,5 +76,30 @@ $(document).ready(function() {
         });
     });
 
+    $("#Galleryform").submit(function(e)
+    {
+        var formObj = $(this);
+        var formURL = formObj.attr("action");
+        var formData = new FormData(this);
+        $.ajax({
+            url: formURL,
+            type: 'POST',
+            data: formData,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data, textStatus, jqXHR)
+            {
+
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+            }
+        });
+        e.preventDefault(); //Prevent Default action. 
+        e.unbind();
+    });
+    $("#Galleryform").submit(); //Submit the form
 
 });
