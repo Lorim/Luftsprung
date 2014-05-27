@@ -6,8 +6,6 @@ class Application_Model_Gallery
     protected $_title;
     protected $_active;
     protected $_tag;
-    protected $_pictures;
-    protected $_previews;
     protected $_post;
  
     public function __construct(array $options = null)
@@ -55,6 +53,9 @@ class Application_Model_Gallery
  
     public function getId()
     {
+        if($this->_id == 0) {
+            return null;
+        }
         return $this->_id;
     }
     

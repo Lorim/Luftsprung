@@ -30,15 +30,15 @@ class AdminController extends Zend_Controller_Action
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
         try{
+            $id = ($this->_request->getParam('galleryid') === 0) ? NULL : $this->_request->getParam('galleryid');
             $oNews = new Application_Model_GalleryMapper();
             $oEntry = new Application_Model_Gallery();
             $oEntry->setTitle($this->_request->getParam('title'));
             $oEntry->setCreated($this->_request->getParam('created'));
             $oEntry->setTag($this->_request->getParam('tag'));
             $oEntry->setActive($this->_request->getParam('active', 1));
-            $oEntry->setPost($this->_request->getParam('entry'));
-            $oEntry->setId($this->_request->getParam('galleryid'));
-            Zend_Debug::dump($oEntry);
+            $oEntry->setPost($this->_request->getParam('entry'),'');
+            $oEntry->setId($id);
             $oNews->save($oEntry);
             $fm = new Zend_Controller_Action_Helper_FlashMessenger();
             //$fm->addMessage('Die Gallerie wurde erstellt :) <br> Fehlen noch die Vorschaubilder.');

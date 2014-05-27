@@ -15,7 +15,7 @@
                     <route>gallery</route>
                     <action>gallery</action>
                     <params>
-                        <tag>Zimt</tag>
+                        <tag>Zucker</tag>
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>

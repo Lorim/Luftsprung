@@ -42,22 +42,25 @@ class Application_Model_GalleryMapper {
     }
     
     public function save(Application_Model_Gallery $gallery) {
-
+        var_dump($gallery);
         $data = array(
             'created' => $gallery->getCreated(),
             'title' => $gallery->getTitle(),
             'active' => $gallery->getActive(),
             'tag' => $gallery->getTag(),
-            'post' => $gallery->getPost()
+            'post' => $gallery->getPost(),
+            'id' => $gallery->getId()
         );
         if (null === ($id = $gallery->getId())) {
             unset($data['id']);
             try {
                 $this->getDbTable()->insert($data);
+                var_dump($data);
             } catch (Exception $ex) {
                 
             }
         } else {
+            var_dump($data);
             $this->getDbTable()->update($data, array('id = ?' => $id));
         }
     }

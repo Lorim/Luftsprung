@@ -75,13 +75,6 @@ $(document).ready(function() {
                     galleryid: $('#galleryid').val(),
                     entry: tinymce.get('galleryentry').getContent()
                 });
-                
-                /*
-                $.post("/admin/addgallery/title/" + $('#galleriename').val() + "/created/" + $('#datum').val() + "/tag/" + $('#gallerytag').val())
-                        .done(function(data) {
-
-                        });
-                        */
             }
             $.get("/json/loadgallerie/tag/" + $('#gallerytag').val(), function(data) {
                 $("#shootings").html(data);
