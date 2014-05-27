@@ -9,7 +9,7 @@
             <resource>index</resource>
             <privilege>gallery</privilege>
             <pages>
-                <Portrait>
+                <Zimt>
                     <label>Zimt und Zucker</label>
                     <controller>index</controller>
                     <route>gallery</route>
@@ -19,8 +19,8 @@
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>
-                </Portrait>
-                <Themen>
+                </Zimt>
+                <Maenner>
                     <label>Männersache</label>
                     <controller>index</controller>
                     <route>gallery</route>
@@ -30,8 +30,8 @@
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>
-                </Themen>
-                <Landscape>
+                </Maenner>
+                <Diamanten>
                     <label>Diamanten</label>
                     <controller>index</controller>
                     <route>gallery</route>
@@ -41,7 +41,7 @@
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>
-                </Landscape>
+                </Diamanten>
             </pages>
         </portraits>
         <liebe>
@@ -52,39 +52,39 @@
             <resource>index</resource>
             <privilege>gallery</privilege>
             <pages>
-                <Portrait>
+                <Paare>
                     <label>Paare</label>
                     <controller>index</controller>
                     <route>gallery</route>
                     <action>gallery</action>
                     <params>
-                        <tag>Portrait</tag>
+                        <tag>Paare</tag>
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>
-                </Portrait>
-                <Themen>
+                </Paare>
+                <Freunde>
                     <label>Freunde &amp; Geschwister</label>
                     <controller>index</controller>
                     <route>gallery</route>
                     <action>gallery</action>
                     <params>
-                        <tag>Themen</tag>
+                        <tag>Freunde</tag>
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>
-                </Themen>
-                <Landscape>
+                </Freunde>
+                <Hochzeit>
                     <label>Hochzeit</label>
                     <controller>index</controller>
                     <route>gallery</route>
                     <action>gallery</action>
                     <params>
-                        <tag>Diverses</tag>
+                        <tag>Hochzeit</tag>
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>
-                </Landscape>
+                </Hochzeit>
             </pages>
         </liebe>
         <baby>
@@ -117,17 +117,17 @@
                     <resource>index</resource>
                     <privilege>gallery</privilege>
                 </Themen>
-                <Landscape>
+                <Konzerte>
                     <label>Konzerte - Places - Rockabilly</label>
                     <controller>index</controller>
                     <route>gallery</route>
                     <action>gallery</action>
                     <params>
-                        <tag>Diverses</tag>
+                        <tag>Konzerte</tag>
                     </params>
                     <resource>index</resource>
                     <privilege>gallery</privilege>
-                </Landscape>
+                </Konzerte>
             </pages>
         </baby>
         <kontakt>
