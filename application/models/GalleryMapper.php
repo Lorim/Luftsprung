@@ -48,7 +48,7 @@ class Application_Model_GalleryMapper {
             'title' => $gallery->getTitle(),
             'active' => $gallery->getActive(),
             'tag' => $gallery->getTag(),
-            'entry' => $gallery->getEntry()
+            'post' => $gallery->getPost()
         );
         if (null === ($id = $gallery->getId())) {
             unset($data['id']);
@@ -79,7 +79,7 @@ class Application_Model_GalleryMapper {
                 ->setTitle($row->title)
                 ->setTag($row->tag)
                 ->setActive($row->active)
-                ->setEntry($row->entry);
+                ->setPost($row->post);
         
         return $gallery;
     }
@@ -95,7 +95,7 @@ class Application_Model_GalleryMapper {
                     ->setTitle($row->title)
                     ->setTag($row->tag)
                     ->setActive($row->active)
-                    ->setEntry($row->entry);
+                    ->setPost($row->post);
                 $entries[] = $entry;
         }
         return $entries;
@@ -146,7 +146,7 @@ class Application_Model_GalleryMapper {
                     ->setTitle($row->title)
                     ->setActive($row->active)
                     ->setTag($row->tag)
-                    ->setEntry($row->entry);
+                    ->setPost($row->post);
             $entries[] = $entry;
         }
         return $entries;

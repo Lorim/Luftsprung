@@ -36,7 +36,7 @@ class AdminController extends Zend_Controller_Action
             $oEntry->setCreated($this->_request->getParam('created'));
             $oEntry->setTag($this->_request->getParam('tag'));
             $oEntry->setActive($this->_request->getParam('active', 1));
-            $oEntry->setEntry($this->_request->getParam('entry'));
+            $oEntry->setPost($this->_request->getParam('entry'));
             $oEntry->setId($this->_request->getParam('galleryid'));
             Zend_Debug::dump($oEntry);
             $oNews->save($oEntry);

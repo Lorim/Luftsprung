@@ -8,7 +8,7 @@ class Application_Model_Gallery
     protected $_tag;
     protected $_pictures;
     protected $_previews;
-    protected $_entry;
+    protected $_post;
  
     public function __construct(array $options = null)
     {
@@ -102,14 +102,14 @@ class Application_Model_Gallery
         return $this->_tag;
     }
     
-    public function getEntry()
+    public function getPost()
     {
-    	return $this->_entry;
+    	return $this->_post;
     }
     
-    public function setEntry($entry)
+    public function setPost($post)
     {
-        $this->_entry = $entry;
+        $this->_post = $post;
         return $this;
     }
 }
