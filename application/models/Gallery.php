@@ -8,6 +8,7 @@ class Application_Model_Gallery
     protected $_tag;
     protected $_pictures;
     protected $_previews;
+    protected $_entry;
  
     public function __construct(array $options = null)
     {
@@ -101,44 +102,14 @@ class Application_Model_Gallery
         return $this->_tag;
     }
     
-    public function previewToPic($sPic)
+    public function getEntry()
     {
-        foreach ($this->getPictures() as $pic) {
-            if($sPic == basename($pic['original'])) {
-                return $pic;
-            }
-        }
-    }
-    public function getPictures()
-    {
-        return $this->_pictures;
-    }
-  
-    public function getPath()
-    {
-    	return $this->_path;
+    	return $this->_entry;
     }
     
-    static public function getPaths()
+    public function setEntry($entry)
     {
-        $sBasepath = APPLICATION_PATH . '/../public/images/*';
-        return glob($sBasepath, GLOB_ONLYDIR);
-    }
-    
-    public function getPreviews()
-    {
-        return $this->_previews;
-    }
-    public function setPreviews($aPreview)
-    {
-        $this->_previews = $aPreview;
+        $this->_entry = $entry;
         return $this;
-    }
-    public function Preview($iElement)
-    {
-        if(isset($this->_previews[$iElement])) {
-            return $this->_previews[$iElement];
-        }
-        return false;
     }
 }

@@ -36,6 +36,9 @@ class AdminController extends Zend_Controller_Action
             $oEntry->setCreated($this->_request->getParam('created'));
             $oEntry->setTag($this->_request->getParam('tag'));
             $oEntry->setActive($this->_request->getParam('active', 1));
+            $oEntry->setEntry($this->_request->getParam('entry'));
+            $oEntry->setId($this->_request->getParam('galleryid'));
+            Zend_Debug::dump($oEntry);
             $oNews->save($oEntry);
             $fm = new Zend_Controller_Action_Helper_FlashMessenger();
             //$fm->addMessage('Die Gallerie wurde erstellt :) <br> Fehlen noch die Vorschaubilder.');

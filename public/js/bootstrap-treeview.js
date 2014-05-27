@@ -74,11 +74,6 @@
 			$.removeData(this, 'plugin_' + pluginName);
 			$('#' + this._styleId).remove();
 		},
-                select: function (nodeId) {
-                    var target = this.$element.find('li[data-nodeid="'+nodeId+'"]');
-                    var node = this._findNode(target);
-                    this._setSelectedNode(node);
-                },
 		_destroy: function() {
 
 			if (this.initialized) {

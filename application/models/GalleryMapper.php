@@ -47,7 +47,8 @@ class Application_Model_GalleryMapper {
             'created' => $gallery->getCreated(),
             'title' => $gallery->getTitle(),
             'active' => $gallery->getActive(),
-            'tag' => $gallery->getTag()
+            'tag' => $gallery->getTag(),
+            'entry' => $gallery->getEntry()
         );
         if (null === ($id = $gallery->getId())) {
             unset($data['id']);
@@ -58,22 +59,6 @@ class Application_Model_GalleryMapper {
             }
         } else {
             $this->getDbTable()->update($data, array('id = ?' => $id));
-            $this->getDbPreviewTable()->delete(
-                    $this->getDbPreviewTable()->getAdapter()->quoteInto('gid = ?', $gallery->getId())
-                    );
-            foreach($gallery->getPreviews() as $pid => $pic) {
-                if($pic == "") continue;
-                $data = array(
-                    'gid' => $gallery->getId(),
-                    'pid' => $pid,
-                    'picture' => $pic
-                );
-                try {
-                $this->getDbPreviewTable()->insert($data);
-                } catch (Exception $e) {
-                    Zend_Debug::dump($e);
-                }
-            }
         }
     }
     
@@ -94,7 +79,7 @@ class Application_Model_GalleryMapper {
                 ->setTitle($row->title)
                 ->setTag($row->tag)
                 ->setActive($row->active)
-                ->setPreviews($this->findPreviews($row->id));
+                ->setEntry($row->entry);
         
         return $gallery;
     }
@@ -110,7 +95,7 @@ class Application_Model_GalleryMapper {
                     ->setTitle($row->title)
                     ->setTag($row->tag)
                     ->setActive($row->active)
-                    ->setPreviews($this->findPreviews($row->id));
+                    ->setEntry($row->entry);
                 $entries[] = $entry;
         }
         return $entries;
@@ -161,7 +146,7 @@ class Application_Model_GalleryMapper {
                     ->setTitle($row->title)
                     ->setActive($row->active)
                     ->setTag($row->tag)
-                    ->setPreviews($this->findPreviews($row->id));
+                    ->setEntry($row->entry);
             $entries[] = $entry;
         }
         return $entries;

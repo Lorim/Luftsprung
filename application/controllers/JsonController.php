@@ -48,8 +48,8 @@ class JsonController extends Zend_Controller_Action {
         $id = $this->_request->getParam('gallerieid', NULL);
         $oGalleries = new Application_Model_GalleryMapper();
         $entry = $oGalleries->find($id, new Application_Model_Gallery);
+        $this->view->tag = $this->_request->getParam('tag', $entry->getTag());
         $this->view->entry = $entry;
-
         $this->_helper->viewRenderer->setNoRender(false);
     }
 }

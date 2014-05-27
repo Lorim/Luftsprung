@@ -87,3 +87,12 @@ ul .dropdown-menu {
     
     cursor: pointer;
 }
+@media screen and (min-width: 768px) {
+    #galleryModal .modal-dialog {
+        width: 80%; /* or whatever you wish */
+      }
+
+}
+.disabledTab {
+    pointer-events: none;
+}
