@@ -25,6 +25,7 @@ $(document).ready(function() {
             image_advtab: true,
             external_filemanager_path: "/filemanager/",
             filemanager_title: "Responsive Filemanager",
+            relative_urls: false,
             external_plugins: {
                 "filemanager": "/filemanager/plugin.min.js"
             }
