@@ -42,7 +42,6 @@ class Application_Model_GalleryMapper {
     }
     
     public function save(Application_Model_Gallery $gallery) {
-        var_dump($gallery);
         $data = array(
             'created' => $gallery->getCreated(),
             'title' => $gallery->getTitle(),
@@ -56,12 +55,10 @@ class Application_Model_GalleryMapper {
             unset($data['id']);
             try {
                 $this->getDbTable()->insert($data);
-                var_dump($data);
             } catch (Exception $ex) {
                 
             }
         } else {
-            var_dump($data);
             $this->getDbTable()->update($data, array('id = ?' => $id));
         }
     }

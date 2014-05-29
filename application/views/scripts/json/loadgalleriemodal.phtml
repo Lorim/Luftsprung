@@ -8,11 +8,11 @@
         <div class="modal-body">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#meta" data-toggle="tab">Basis</a></li>
-                <?php if(!$this->entry->getId()):?>
-                <li class="disabled disabledTab"><a href="#entry" data-toggle="tab">Eintrag</a></li>
+                <?php if (!$this->entry->getId()): ?>
+                    <li class="disabled disabledTab"><a href="#entry" data-toggle="tab">Eintrag</a></li>
                 <?php else: ?>
-                <li><a href="#entry" data-toggle="tab">Eintrag</a></li>
-                <?php endif;?>
+                    <li><a href="#entry" data-toggle="tab">Eintrag</a></li>
+                <?php endif; ?>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="meta">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group col-sm-4">
-                                <input type="text" class="form-control" id="preview" value="<?php echo $this->entry->getPreview();?>">
+                                <input type="text" class="form-control" id="preview" value="<?php echo $this->entry->getPreview(); ?>">
                                 <span class="input-group-btn">
                                     <a data-toggle="modal" class="btn btn-default" data-target="#filemanagerModal">Galleriebild wählen</a>
                                 </span>
@@ -42,14 +42,20 @@
                         </div>
                         <div class="checkbox">
                             <label>
+                                <input type="checkbox" id="active" value="1" <?php if($this->entry->getActive()) echo 'checked="checked"';?>> Gallerie aktiv?
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
                                 <input type="checkbox" id="delete"> Gallerie löschen
                             </label>
                         </div>
                     </form>
-                </p>
+                    </p>
                 </div>
                 <div class="tab-pane fade" id="entry">
-                    <textarea id="galleryentry"><?php echo $this->entry->getPost();?></textarea>
+                    <textarea id="galleryentry"><?php echo $this->entry->getPost(); ?></textarea>
                 </div>
             </div>
         </div>

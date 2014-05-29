@@ -84,7 +84,7 @@ class Application_Model_Gallery
     
     public function setActive($active)
     {
-        $this->_active = $active;
+        $this->_active = (bool) $active;
         return $this;
     }
     

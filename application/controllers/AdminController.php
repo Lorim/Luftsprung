@@ -39,14 +39,15 @@ class AdminController extends Zend_Controller_Action
             $oEntry->setActive($this->_request->getParam('active', 1));
             $oEntry->setPost($this->_request->getParam('entry'),'');
             $oEntry->setPreview($this->_request->getParam('preview'));
+            $oEntry->setActive($this->_request->getParam('active'));
             $oEntry->setId($id);
             $oNews->save($oEntry);
             $fm = new Zend_Controller_Action_Helper_FlashMessenger();
             //$fm->addMessage('Die Gallerie wurde erstellt :) <br> Fehlen noch die Vorschaubilder.');
         }  catch (Exception $e) {
-            echo $this->view->json(array("success" => false));
+            
         }
-        echo $this->view->json(array("success" => true, "id" => 1));
+        
     }
     public function deletegalleryAction() {
         $this->_helper->layout()->disableLayout();
@@ -56,7 +57,7 @@ class AdminController extends Zend_Controller_Action
             $entry = $oGalleries->find($this->_request->getParam('id'), new Application_Model_Gallery);
             $oGalleries->delete($entry);
         }  catch (Exception $e) {
-            echo $this->view->json(array("success" => false));
+            
         }
     }
 }
