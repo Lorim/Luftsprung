@@ -51,18 +51,26 @@ $(document).ready(function() {
         $.get("/json/loadgallerie/tag/" + node.element, function(data) {
             $("#gallerytag").val(node.element);
             $("#shootings").html(data);
+            doModal();
         });
     });
 
+    function doModal() {
+        $("a[data-modal='gallerymodal']").on('click', function() {
+            $('#galleryModal').load($(this).data('remote'));
+            $('#galleryModal').modal();
+        });
+    }
+
     $(document).on('hidden.bs.modal',  '.modal', function(e) {
-        $(e.target).removeData('bs.modal');
+        
         tinymce.remove('#galleryentry');
     });
     
     jQuery('#myModal').on("shown",function(){
         initTiny();
     });
-
+    
     
     $(document).on('shown.bs.modal',  '.modal', function(e) {
         $('.datepicker').datepicker({
@@ -74,7 +82,6 @@ $(document).ready(function() {
             if ($('#delete').is(':checked')) {
                 $.post("/admin/deletegallery/id/" + $('#galleryid').val());
             } else {
-                
                 $.post( "/admin/addgallery", { 
                     title: $('#galleriename').val(),
                     created: $('#datum').val(),
@@ -85,9 +92,9 @@ $(document).ready(function() {
             }
             $.get("/json/loadgallerie/tag/" + $('#gallerytag').val(), function(data) {
                 $("#shootings").html(data);
+                doModal();
             });
             $('#galleryModal').modal('hide');
-            
         });
     });
 
