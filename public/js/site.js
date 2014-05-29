@@ -51,14 +51,23 @@ $(document).ready(function() {
         $.get("/json/loadgallerie/tag/" + node.element, function(data) {
             $("#gallerytag").val(node.element);
             $("#shootings").html(data);
+            
+        }).done( function data() {
             doModal();
         });
     });
 
     function doModal() {
         $("a[data-modal='gallerymodal']").on('click', function() {
-            $('#galleryModal').load($(this).data('remote'));
-            $('#galleryModal').modal();
+            
+            $.get($(this).data('remote'), function(data) {
+                $('#galleryModal').html(data);
+            }).done( function data() {
+                $('.datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+                $('#galleryModal').modal();
+            });
         });
     }
 
@@ -73,9 +82,7 @@ $(document).ready(function() {
     
     
     $(document).on('shown.bs.modal',  '.modal', function(e) {
-        $('.datepicker').datepicker({
-            format: 'yyyy-mm-dd'
-        });
+        
         // initialize TinyMCE Editor
         initTiny();
         $('#updateGallery').on('click', function() {
