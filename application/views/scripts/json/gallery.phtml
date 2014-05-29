@@ -4,7 +4,7 @@
         ?>
     <div class="col-md-3 col-sm-3 col-xs-12 image">
         <a data-modal="gallerymodal" data-target="#galleryModal" data-remote="<?php echo $url;?>">
-            <img src="http://placehold.it/480x640/e5e3d7&text=%20" class="boxed" data-pin-no-hover="true">
+            <img src="<?php echo $entry->getPreview();?>" class="boxed" data-pin-no-hover="true">
             <div class="overlay">
                 <?php echo $entry->getTitle(); ?> <br>
                 <?php echo $entry->getCreated(); ?>

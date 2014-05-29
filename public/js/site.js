@@ -52,7 +52,6 @@ $(document).ready(function() {
         $.get("/json/loadgallerie/tag/" + node.element, function(data) {
             $("#gallerytag").val(node.element);
             $("#shootings").html(data);
-            
         }).done( function data() {
             doModal();
         });
@@ -60,7 +59,6 @@ $(document).ready(function() {
 
     function doModal() {
         $("a[data-modal='gallerymodal']").on('click', function() {
-            
             $.get($(this).data('remote'), function(data) {
                 $('#galleryModal').html(data);
             }).done( function data() {
@@ -72,8 +70,7 @@ $(document).ready(function() {
         });
     }
 
-    $(document).on('hidden.bs.modal',  '.modal', function(e) {
-        
+    $(document).on('hidden.bs.modal',  '#galleryModal', function(e) {
         tinymce.remove('#galleryentry');
     });
     
@@ -82,8 +79,7 @@ $(document).ready(function() {
     });
     
     
-    $(document).on('shown.bs.modal',  '.modal', function(e) {
-        
+    $(document).on('shown.bs.modal', '#galleryModal', function(e) {
         // initialize TinyMCE Editor
         initTiny();
         $('#updateGallery').on('click', function() {
@@ -95,7 +91,8 @@ $(document).ready(function() {
                     created: $('#datum').val(),
                     tag: $('#gallerytag').val(),
                     galleryid: $('#galleryid').val(),
-                    entry: tinymce.get('galleryentry').getContent()
+                    entry: tinymce.get('galleryentry').getContent(),
+                    preview: $('#preview').val()
                 });
             }
             $.get("/json/loadgallerie/tag/" + $('#gallerytag').val(), function(data) {

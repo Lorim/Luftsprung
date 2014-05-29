@@ -38,6 +38,7 @@ class AdminController extends Zend_Controller_Action
             $oEntry->setTag($this->_request->getParam('tag'));
             $oEntry->setActive($this->_request->getParam('active', 1));
             $oEntry->setPost($this->_request->getParam('entry'),'');
+            $oEntry->setPreview($this->_request->getParam('preview'));
             $oEntry->setId($id);
             $oNews->save($oEntry);
             $fm = new Zend_Controller_Action_Helper_FlashMessenger();

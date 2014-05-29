@@ -7,6 +7,7 @@ class Application_Model_Gallery
     protected $_active;
     protected $_tag;
     protected $_post;
+    protected $_preview;
  
     public function __construct(array $options = null)
     {
@@ -111,6 +112,17 @@ class Application_Model_Gallery
     public function setPost($post)
     {
         $this->_post = $post;
+        return $this;
+    }
+    
+    public function getPreview()
+    {
+    	return $this->_preview;
+    }
+    
+    public function setPreview($preview)
+    {
+        $this->_preview = $preview;
         return $this;
     }
 }

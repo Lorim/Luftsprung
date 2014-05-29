@@ -49,6 +49,7 @@ class Application_Model_GalleryMapper {
             'active' => $gallery->getActive(),
             'tag' => $gallery->getTag(),
             'post' => $gallery->getPost(),
+            'preview' => $gallery->getPreview(),
             'id' => $gallery->getId()
         );
         if (null === ($id = $gallery->getId())) {
@@ -82,7 +83,8 @@ class Application_Model_GalleryMapper {
                 ->setTitle($row->title)
                 ->setTag($row->tag)
                 ->setActive($row->active)
-                ->setPost($row->post);
+                ->setPost($row->post)
+                ->setPreview($row->preview);
         
         return $gallery;
     }
@@ -98,7 +100,8 @@ class Application_Model_GalleryMapper {
                     ->setTitle($row->title)
                     ->setTag($row->tag)
                     ->setActive($row->active)
-                    ->setPost($row->post);
+                    ->setPost($row->post)
+                    ->setPreview($row->preview);
                 $entries[] = $entry;
         }
         return $entries;
@@ -149,23 +152,9 @@ class Application_Model_GalleryMapper {
                     ->setTitle($row->title)
                     ->setActive($row->active)
                     ->setTag($row->tag)
-                    ->setPost($row->post);
+                    ->setPost($row->post)
+                    ->setPreview($row->preview);
             $entries[] = $entry;
-        }
-        return $entries;
-    }
-
-    public function findPreviews($iGalleryid)
-    {
-        $resultSet = $this->getDbPreviewTable()->fetchAll(
-                    $this->getDbPreviewTable()
-                        ->select()
-                        ->where("gid = " . $iGalleryid)
-                    );
-        $entries = array();
-        
-        foreach ($resultSet as $row) {
-            $entries[$row->pid] = $row->picture;
         }
         return $entries;
     }
