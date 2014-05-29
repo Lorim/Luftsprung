@@ -30,6 +30,8 @@ $(document).ready(function() {
             }
         });
     }
+    
+    
     function getTree() {
         $.ajax({
             url: "/json/galleries",
@@ -52,12 +54,17 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('hidden.bs.modal', function(e) {
+    $(document).on('hidden.bs.modal',  '.modal', function(e) {
         $(e.target).removeData('bs.modal');
         tinymce.remove('#galleryentry');
     });
+    
+    jQuery('#myModal').on("shown",function(){
+        initTiny();
+    });
 
-    $(document).on('shown.bs.modal', function(e) {
+    
+    $(document).on('shown.bs.modal',  '.modal', function(e) {
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd'
         });
