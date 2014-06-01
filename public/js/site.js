@@ -14,7 +14,7 @@ $(document).ready(function() {
         tinymce.init({
             selector: "#galleryentry",
             theme: "modern",
-            height: 300,
+            height: 500,
             plugins: [
                 "advlist autolink link image lists charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",

@@ -1,11 +1,10 @@
 <?php
-class Application_Model_Comment
+class Application_Model_Article
 {
-    protected $_comment;
     protected $_created;
     protected $_name;
     protected $_id;
-    protected $_newsid;
+    protected $_price;
     protected $_active;
  
     public function __construct(array $options = null)
@@ -43,17 +42,6 @@ class Application_Model_Comment
             }
         }
         return $this;
-    }
- 
-    public function setComment($text)
-    {
-        $this->_comment = (string) $text;
-        return $this;
-    }
- 
-    public function getComment()
-    {
-        return $this->_comment;
     }
  
     public function setName($name)
@@ -98,15 +86,15 @@ class Application_Model_Comment
         return $this->_id;
     }
     
-    public function setNewsid($newsid)
+    public function setPrice($price)
     {
-    	$this->_newsid = (string) $newsid;
+    	$this->_price = $price;
     	return $this;
     }
     
-    public function getNewsid()
+    public function getPrice()
     {
-    	return $this->_newsid;
+    	return $this->_price;
     }
     
     public function setActive($active)

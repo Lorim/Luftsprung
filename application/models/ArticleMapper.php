@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_CommentMapper {
+class Application_Model_ArticleMapper {
 
     protected $_dbTable;
 

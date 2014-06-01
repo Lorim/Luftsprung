@@ -130,6 +130,14 @@
                 </Konzerte>
             </pages>
         </baby>
+        <shop>
+            <label>Shop</label>
+            <route>default</route>
+            <controller>shop</controller>
+            <action>index</action>
+            <resource>index</resource>
+            <privilege>gallery</privilege>
+        </shop>
         <kontakt>
             <label>Kontakt</label>
             <controller>index</controller>
