@@ -30,7 +30,7 @@ class Application_Controller_Helper_Acl {
     private function setPrivileges() {
         //$this->acl->allow(null,null);
         $this->acl->allow(
-                "guest", array("index", "error", "json"), null);
+                "guest", array("index", "error", "json", "shop"), null);
 
         $this->acl->allow(
                 null, array(

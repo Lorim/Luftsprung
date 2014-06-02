@@ -1,0 +1,13 @@
+<div class="row lightbox">
+    <div class="col-md-6">
+        <img src="http://placehold.it/320x150" alt="">
+    </div>
+    <div class="col-md-6">
+        <h4><?php echo $this->article->getName();?></h4>
+        <h5><?php echo $this->article->getPrice();?> <span class="glyphicon glyphicon-euro"></span></h5>
+        <p>
+            <?php echo $this->article->getEntry();?>
+        </p>
+        <button class="btn btn-default pull-right">In den Warenkorb</button>
+    </div>
+</div>
