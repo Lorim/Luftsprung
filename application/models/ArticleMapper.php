@@ -17,21 +17,21 @@ class Application_Model_ArticleMapper {
 
     public function getDbTable() {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Application_Model_DbTable_Comment');
+            $this->setDbTable('Application_Model_DbTable_Article');
         }
         return $this->_dbTable;
     }
 
-    public function save(Application_Model_Comment $comment) {
+    public function save(Application_Model_Article $article) {
 
         $data = array(
-            'name' => $comment->getName(),
-            'comment' => $comment->getComment(),
-            'created' => date('Y-m-d H:i:s'),
-            'newsid' => $comment->getNewsid(),
-            'active' => $comment->getActive()
+            'name' => $article->getName(),
+            'created' => date('Y-m-d'),
+            'price' => $article->getPrice(),
+            'active' => $article->getActive(),
+            'entry' => $article->getEntry()
         );
-        if (null === ($id = $comment->getId())) {
+        if (null === ($id = $article->getId())) {
             unset($data['id']);
             try {
                 $this->getDbTable()->insert($data);
@@ -43,62 +43,62 @@ class Application_Model_ArticleMapper {
         }
     }
 
-    public function delete(Application_Model_Comment $comment) {
-        $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $comment->getId());
+    public function delete(Application_Model_Article $article) {
+        $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $article->getId());
         $this->getDbTable()->delete($where);
     }
 
-    public function find($id, Application_Model_Comment $comment) {
+    public function find($id, Application_Model_Article $article) {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
             return;
         }
         $row = $result->current();
 
-        $comment->setId($row->id)
+        $article->setId($row->id)
                 ->setName($row->name)
-                ->setComment($row->comment)
                 ->setCreated($row->created)
-                ->setNewsid($row->newsid)
+                ->setEntry($row->entry)
+                ->setPrice($row->price)
                 ->setActive($row->active);
 
-        return $comment;
+        return $article;
     }
 
     public function fetchAll() {
         $resultSet = $this->getDbTable()->fetchAll();
         $entries = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_Comment();
+            $entry = new Application_Model_Article();
             $entry->setId($row->id)
                     ->setName($row->name)
-                    ->setComment($row->comment)
                     ->setCreated($row->created)
-                    ->setNewsid($row->newsid)
+                    ->setEntry($row->entry)
+                    ->setPrice($row->price)
                     ->setActive($row->active);
             $entries[] = $entry;
         }
         return $entries;
     }
 
-    public function findComments($newsid) {
+    public function findArticle($articleid) {
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $resultSet = $this->getDbTable()->fetchAll(
-                    "newsid = '$newsid'"
+                    "id = '$articleid'"
             );
         } else {
             $resultSet = $this->getDbTable()->fetchAll(
-                    "newsid = '$newsid' AND (active = 1)"
+                    "id = '$articleid' AND (active = 1)"
             );
         }
         $entries = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_Comment();
+            $entry = new Application_Model_Article();
             $entry->setId($row->id)
                     ->setName($row->name)
-                    ->setComment($row->comment)
                     ->setCreated($row->created)
-                    ->setNewsid($row->newsid)
+                    ->setEntry($row->entry)
+                    ->setPrice($row->price)
                     ->setActive($row->active);
             $entries[] = $entry;
         }

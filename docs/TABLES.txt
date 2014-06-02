@@ -8,3 +8,13 @@ CREATE TABLE `gallery` (
   `preview` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `active` tinyint(4) DEFAULT NULL,
+  `entry` text,
+  `created` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

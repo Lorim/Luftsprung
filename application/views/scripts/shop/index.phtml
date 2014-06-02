@@ -1,3 +1,5 @@
 <div class="row lightbox">
-    
+    <?php foreach($this->articles as $article):
+        echo $article->renderArticle('article.phtml');
+    endforeach;?>
 </div>

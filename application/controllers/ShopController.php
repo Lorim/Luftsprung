@@ -14,6 +14,8 @@ class ShopController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $oArticle = new Application_Model_Article();
+        $oArticle = new Application_Model_ArticleMapper();
+        $oArticles = $oArticle->fetchAll();
+        $this->view->articles = $oArticles;
     }
 }
