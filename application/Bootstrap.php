@@ -134,6 +134,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/css/bootstrap.css',
             '/css/bootstrap-notify.css',
             '/css/bootstrap-treeview.css',
+            '/css/cart.css',
             '/css/site.css',
         );
         foreach ($css as $file) {
