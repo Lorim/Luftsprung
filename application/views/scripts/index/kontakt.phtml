@@ -1,16 +1,78 @@
 <div class="row lightbox">
     <div class="col-md-12">
-        <h3>Kontakt</h3>
-        <div class="row ">
-            <div class="col-lg-12 col-md-12">
-                <p class="text-muted center-block">
-                    <br />
-                    Vielen Dank für den Besuch auf meiner Website<br />
-                    Du möchtest gerne mehr über meine Shootings erfahren, oder hast andere Fragen?<br /> Dann schick mir eine kurze Nachricht
-                    und du erhälst kurzfristig eine Antwort von mir. 
-                </p>
-                <br />
-                <?php echo $this->partial('forms/kontakt.phtml', array('form' => $this->form)); ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        <form name="comment" role="form" 
+                              id="<?php print $this->escape($this->form->getName()) ?>" 
+                              action="<?php print $this->escape($this->form->getAction()) ?>" 
+                              method="<?php print $this->escape($this->form->getMethod()) ?>">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="name">
+                                            Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" 
+                                               placeholder="Dein Name" 
+                                               required="required"
+                                               value="<?php echo $this->form->getElement('name')->getValue() ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">
+                                            Email Adresse</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                            </span>
+                                            <input type="email" class="form-control" id="mail" name="mail" 
+                                                   placeholder="eMail" 
+                                                   required="required"
+                                                   value="<?php echo $this->form->getElement('mail')->getValue() ?>"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">
+                                            Betreff</label>
+                                        <select id="subject" name="subject" class="form-control" required="required">
+                                            <option value="na" selected="">wähle:</option>
+                                            <option value="service">Allgemeine Fragen</option>
+                                            <option value="suggestions">Shooting Termin</option>
+                                            <option value="product">Fehler auf der Seite</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label for="name">
+                                            Nachricht</label>
+                                        <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                                  placeholder="Nachricht"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                                        Senden</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form>
+                        <legend><span class="glyphicon glyphicon-globe"></span> Mein Büro</legend>
+                        <address>
+                            <strong>Luftsprung</strong><br>
+                            Saalfelder Chausee 12<br>
+                            07318 Saalfeld<br>
+                            <abbr title="Telefon">
+                                P:</abbr>
+                            (123) 456-7890
+                        </address>
+                        <address>
+                            <strong>eMail</strong><br>
+                            <a href="mailto:nadin@luftsprung.de">nadin@luftsprung.de</a>
+                        </address>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

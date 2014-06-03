@@ -83,6 +83,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
                     )
                 )
             );
+        } else {
+            $navigation->addPage(
+                new Zend_Config(
+                    array(
+                        'label' => 'Login',
+                        'controller' => 'index',
+                        'action' => 'login',
+                        'route' => 'loginroute'
+                    )
+                )
+            );
         }
         $identity = $auth->getIdentity();
 

@@ -24,4 +24,8 @@ class ShopController extends Zend_Controller_Action {
         $oArticle = $oArticles->find($this->_request->getParam('id'), new Application_Model_Article());
         $this->view->article = $oArticle;
     }
+    
+    public function cartAction() {
+        
+    }
 }
