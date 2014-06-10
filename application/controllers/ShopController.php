@@ -17,6 +17,18 @@ class ShopController extends Zend_Controller_Action {
                     $this->_request->getParam('addcart'), 
                     $this->_request->getParam('qty', 1));
         }
+        $oNav = Zend_Registry::get('nav');
+        $oNav->addPage(
+                new Zend_Config(
+                    array(
+                        'label' => 'Warenkorb',
+                        'controller' => 'shop',
+                        'action' => 'cart',
+                        'class' => 'pull-right',
+                        'route' => 'default'
+                    )
+                )
+            );
     }
 
     public function indexAction() {

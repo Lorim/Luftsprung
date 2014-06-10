@@ -12,6 +12,7 @@ CREATE TABLE `gallery` (
 CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `artnr` varchar(45) NOT NULL,
   `price` float DEFAULT NULL,
   `active` tinyint(4) DEFAULT NULL,
   `entry` text,

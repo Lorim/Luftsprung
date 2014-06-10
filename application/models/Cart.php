@@ -13,28 +13,28 @@ class Application_Model_Cart implements Iterator{
     
     public function __construct() {
         $cartNs = new Zend_Session_Namespace('cart');
+        $oArticle = new Application_Model_ArticleMapper();
+
         if(null !== $cartNs->articles) {
-            foreach($cartNs->articles as $idx => $data) {
-                $this->addProduct($data['artnr'], $data['count']);
-            }
+            $this->_articlelist = $cartNs->articlelist;
         }
     }
     
     public function __destruct() {
         $cartNs = new Zend_Session_Namespace('cart');
-        foreach($this->_articlelist as $idx => $data) {
-            $cartNs->articles[$idx] = $data;
-        }
+        $cartNs->articlelist = $this->_articlelist;
     }
-    public function addProduct($artnr, $count) {
+    
+    public function addProduct($artnr, $count = 1) {
         if(($idx = $this->findArticle($artnr)) !== false) {
-            $this->_articlelist[$idx]['count'] += $count;
+            $this->_articlelist[$idx]['count'] = $count;
             return $this;
         }
-        
+        $oArticle = new Application_Model_ArticleMapper();
+        $aArt = $oArticle->findArticle($artnr);
         $this->_articlelist[] = array(
-            'artnr' => $artnr,
-            'count' => $count
+            'count' => $count,
+            'article' => $aArt
         );
         return $this;
     }
@@ -46,7 +46,6 @@ class Application_Model_Cart implements Iterator{
         return $this;
     }
     public function setAmount($artnr, $count) {
-        
         return $this;
     }
     
@@ -55,11 +54,19 @@ class Application_Model_Cart implements Iterator{
             return false;
         }
         foreach($this->_articlelist as $idx => $article) {
-            if($article['artnr'] == $artnr) {
+            if($article['article']->getArtnr() == $artnr) {
                 return $idx;
             }
         }
         return false;
+    }
+    
+    public function getTotal() {
+        $fTotal = 0;
+        foreach($this->_articlelist as $entry) {
+            $fTotal += ($entry['count'] * $entry['article']->getPrice());
+        }
+        return $fTotal;
     }
     
     public function rewind() {

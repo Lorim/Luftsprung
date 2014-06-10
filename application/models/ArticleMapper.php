@@ -84,29 +84,26 @@ class Application_Model_ArticleMapper {
         return $entries;
     }
 
-    public function findArticle($articleid) {
+    public function findArticle($artnr) {
         if (Zend_Auth::getInstance()->hasIdentity()) {
-            $resultSet = $this->getDbTable()->fetchAll(
-                    "id = '$articleid'"
+            $result = $this->getDbTable()->fetchRow(
+                    "artnr = '$artnr'"
             );
         } else {
-            $resultSet = $this->getDbTable()->fetchAll(
-                    "id = '$articleid' AND (active = 1)"
+            $result = $this->getDbTable()->fetchAll(
+                    "artnr = '$artnr' AND (active = 1)"
             );
         }
-        $entries = array();
-        foreach ($resultSet as $row) {
-            $entry = new Application_Model_Article();
-            $entry->setId($row->id)
-                    ->setName($row->name)
-                    ->setArtnr($row->artnr)
-                    ->setCreated($row->created)
-                    ->setEntry($row->entry)
-                    ->setPrice($row->price)
-                    ->setActive($row->active);
-            $entries[] = $entry;
-        }
-        return $entries;
+        $row = $result->current();
+        $entry = new Application_Model_Article();
+        $entry->setId($row->id)
+                ->setName($row->name)
+                ->setArtnr($row->artnr)
+                ->setCreated($row->created)
+                ->setEntry($row->entry)
+                ->setPrice($row->price)
+                ->setActive($row->active);
+        return $entry;
     }
 
 }
