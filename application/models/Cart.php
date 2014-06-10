@@ -63,6 +63,9 @@ class Application_Model_Cart implements Iterator{
     
     public function getTotal() {
         $fTotal = 0;
+        if(!count($this->_articlelist)) {
+            return $fTotal;
+        }
         foreach($this->_articlelist as $entry) {
             $fTotal += ($entry['count'] * $entry['article']->getPrice());
         }
