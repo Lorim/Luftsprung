@@ -26,6 +26,7 @@ class Application_Model_ArticleMapper {
 
         $data = array(
             'name' => $article->getName(),
+            'artnr' => $article->getArtnr(),
             'created' => date('Y-m-d'),
             'price' => $article->getPrice(),
             'active' => $article->getActive(),
@@ -57,6 +58,7 @@ class Application_Model_ArticleMapper {
 
         $article->setId($row->id)
                 ->setName($row->name)
+                ->setArtnr($row->artnr)
                 ->setCreated($row->created)
                 ->setEntry($row->entry)
                 ->setPrice($row->price)
@@ -72,6 +74,7 @@ class Application_Model_ArticleMapper {
             $entry = new Application_Model_Article();
             $entry->setId($row->id)
                     ->setName($row->name)
+                    ->setArtnr($row->artnr)
                     ->setCreated($row->created)
                     ->setEntry($row->entry)
                     ->setPrice($row->price)
@@ -96,6 +99,7 @@ class Application_Model_ArticleMapper {
             $entry = new Application_Model_Article();
             $entry->setId($row->id)
                     ->setName($row->name)
+                    ->setArtnr($row->artnr)
                     ->setCreated($row->created)
                     ->setEntry($row->entry)
                     ->setPrice($row->price)

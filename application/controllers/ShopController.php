@@ -11,6 +11,12 @@ class ShopController extends Zend_Controller_Action {
                 '://' . 
                 $this->getRequest()->getHttpHost() .
                 $this->getRequest()->getRequestUri();
+        if(null !== $this->_request->getParam('addcart')) {
+            $oCart = new Application_Model_Cart();
+            $oCart->addProduct(
+                    $this->_request->getParam('addcart'), 
+                    $this->_request->getParam('qty', 1));
+        }
     }
 
     public function indexAction() {
@@ -26,6 +32,8 @@ class ShopController extends Zend_Controller_Action {
     }
     
     public function cartAction() {
-        
+        $oCart = new Application_Model_Cart();
+        $this->view->cart = $oCart;
+        //Zend_Debug::dump($oCart);
     }
 }

@@ -5,6 +5,7 @@ class Application_Model_Article {
     protected $_created;
     protected $_name;
     protected $_id;
+    protected $_artnr;
     protected $_price;
     protected $_entry;
     protected $_active;
@@ -77,6 +78,15 @@ class Application_Model_Article {
         return $this->_id;
     }
 
+    public function setArtnr($artnr) {
+        $this->_artnr =  $artnr;
+        return $this;
+    }
+
+    public function getArtnr() {
+        return $this->_artnr;
+    }
+    
     public function setPrice($price) {
         $this->_price = $price;
         return $this;
