@@ -13,8 +13,6 @@ class Application_Model_Cart implements Iterator{
     
     public function __construct() {
         $cartNs = new Zend_Session_Namespace('cart');
-        $oArticle = new Application_Model_ArticleMapper();
-
         if(null !== $cartNs->articles) {
             $this->_articlelist = $cartNs->articlelist;
         }
@@ -46,6 +44,9 @@ class Application_Model_Cart implements Iterator{
         return $this;
     }
     public function setAmount($artnr, $count) {
+        if($idx = $this->findArticle($artnr)) {
+            $this->_articlelist[$idx]['count'] = $count;
+        }
         return $this;
     }
     
