@@ -86,7 +86,7 @@ class Application_Model_ArticleMapper {
 
     public function findArticle($artnr) {
         if (Zend_Auth::getInstance()->hasIdentity()) {
-            $result = $this->getDbTable()->fetchRow(
+            $result = $this->getDbTable()->fetchAll(
                     "artnr = '$artnr'"
             );
         } else {

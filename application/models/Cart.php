@@ -12,8 +12,9 @@ class Application_Model_Cart implements Iterator{
     private $_position;
     
     public function __construct() {
+        $this->_position = 0;
         $cartNs = new Zend_Session_Namespace('cart');
-        if(null !== $cartNs->articles) {
+        if(null !== $cartNs->articlelist) {
             $this->_articlelist = $cartNs->articlelist;
         }
     }
@@ -24,8 +25,9 @@ class Application_Model_Cart implements Iterator{
     }
     
     public function addProduct($artnr, $count = 1) {
-        if(($idx = $this->findArticle($artnr)) !== false) {
-            $this->_articlelist[$idx]['count'] = $count;
+        $idx = $this->findArticle($artnr);
+        if($idx !== false) {
+            $this->_articlelist[$idx]['count'] += $count;
             return $this;
         }
         $oArticle = new Application_Model_ArticleMapper();

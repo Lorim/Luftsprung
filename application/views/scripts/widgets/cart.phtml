@@ -1,0 +1,26 @@
+<?php
+$oCart = new Application_Model_Cart();
+?>
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Warenkorb<b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu">
+        <?php foreach ($oCart as $product): ?>
+            <li>
+                <a href="#">
+                    <img src="http://placehold.it/60x60" class="thumbnail" 
+                         alt="<?php echo $product['article']->getName(); ?>" 
+                         title="<?php echo $product['article']->getName(); ?>">
+                    <div class="cart-detail">
+                        <?php echo $product['article']->getName(); ?>
+                        <div class="help"><?php echo $product['count']; ?>x <?php echo $product['article']->getPrice(); ?></div>
+                    </div>
+                </a>
+            </li>
+        <?php endforeach; ?>
+        <li class="divider"></li>
+        <li><a href="/shop/cart">Zum Warenkorb</a></li>
+    </ul>
+    </li>
+
+</ul>

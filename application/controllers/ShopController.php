@@ -6,29 +6,18 @@ class ShopController extends Zend_Controller_Action {
         /* Initialize action controller here */
         $this->_helper->layout()->getView()->headTitle("Luftsprung", 
                     Zend_View_Helper_Placeholder_Container_Abstract::SET);
-        $layout = $this->_helper->layout()->ogurl = 
-                $this->getRequest()->getScheme() . 
-                '://' . 
-                $this->getRequest()->getHttpHost() .
-                $this->getRequest()->getRequestUri();
+        $fm = new Zend_Controller_Action_Helper_FlashMessenger();
         if(null !== $this->_request->getParam('addcart')) {
             $oCart = new Application_Model_Cart();
             $oCart->addProduct(
                     $this->_request->getParam('addcart'), 
                     $this->_request->getParam('qty', 1));
+            $msg = sprintf("%dx Artikel %s in den Warenkorb gelegt.",
+                    $this->_request->getParam('qty'),
+                    $this->_request->getParam('addcart'));
+            $fm->addMessage($msg);
+            
         }
-        $oNav = Zend_Registry::get('nav');
-        $oNav->addPage(
-                new Zend_Config(
-                    array(
-                        'label' => 'Warenkorb',
-                        'controller' => 'shop',
-                        'action' => 'cart',
-                        'class' => 'pull-right',
-                        'route' => 'default'
-                    )
-                )
-            );
     }
 
     public function indexAction() {
@@ -46,6 +35,5 @@ class ShopController extends Zend_Controller_Action {
     public function cartAction() {
         $oCart = new Application_Model_Cart();
         $this->view->cart = $oCart;
-        //Zend_Debug::dump($oCart);
     }
 }
