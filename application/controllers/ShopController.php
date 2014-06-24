@@ -34,6 +34,11 @@ class ShopController extends Zend_Controller_Action {
     
     public function cartAction() {
         $oCart = new Application_Model_Cart();
+        $sAction = $this->_request->getParam('a');
+        if($sAction == 'remove') {
+            $sArticle = $this->_request->getParam('article');
+            $oCart->removeProduct($sArticle);
+        }
         $this->view->cart = $oCart;
     }
 }

@@ -75,7 +75,6 @@ class IndexController extends Zend_Controller_Action {
         $form = new Application_Form_Kontakt();
 
         $request = $this->getRequest();
-
         if ($request->isPost()) {
             if ($form->isValid($request->getParams())) {
                 //$form->reset();
@@ -84,8 +83,8 @@ class IndexController extends Zend_Controller_Action {
                 $view->form = $form->getValues();
                 $html = $view->render('kontakt.phtml');
                 $mail = new Zend_Mail('UTF-8');
-                $mail->setFrom("gallery@se519.de")
-                        ->addTo("steffen@se519.de")
+                $mail->setFrom("luftsprung@luftsprung.de")
+                        ->addTo("admin@lonie.de")
                         ->setSubject('Neue Kontaktanfrage von ' . $form->getValue('name'));
                 $mail->setBodyHtml($html);
                 $fm = new Zend_Controller_Action_Helper_FlashMessenger();

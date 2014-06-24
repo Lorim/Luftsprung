@@ -27,7 +27,13 @@
                 </div>
             </div>
             <div class="panel-body">
-                <?php foreach($this->cart as $product):
+                <?php foreach($this->cart->getProducts() as $product):
+                    $url = $this->url(array(
+                        'controller' => 'shop',
+                        'action' => 'cart',
+                        'a' => 'remove',
+                        'article' => $product['article']->getArtnr()
+                            ), 'default');
                     ?>
                 <div class="row">
                     <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
@@ -44,7 +50,7 @@
                         </div>
                         <div class="col-xs-2">
                             <button type="button" class="btn btn-link btn-xs">
-                                <span class="glyphicon glyphicon-trash"> </span>
+                                <a href="<?php echo $url;?>" class="glyphicon glyphicon-trash"></a>
                             </button>
                         </div>
                     </div>

@@ -6,13 +6,11 @@
  * and open the template in the editor.
  */
 
-class Application_Model_Cart implements Iterator{
+class Application_Model_Cart {
     
     private $_articlelist;
-    private $_position;
     
     public function __construct() {
-        $this->_position = 0;
         $cartNs = new Zend_Session_Namespace('cart');
         if(null !== $cartNs->articlelist) {
             $this->_articlelist = $cartNs->articlelist;
@@ -23,7 +21,9 @@ class Application_Model_Cart implements Iterator{
         $cartNs = new Zend_Session_Namespace('cart');
         $cartNs->articlelist = $this->_articlelist;
     }
-    
+    public function getProducts() {
+        return $this->_articlelist;
+    }
     public function addProduct($artnr, $count = 1) {
         $idx = $this->findArticle($artnr);
         if($idx !== false) {
@@ -39,10 +39,11 @@ class Application_Model_Cart implements Iterator{
         return $this;
     }
     public function removeProduct($artnr) {
-        if(!isset($this->_articlelist[$artnr])) {
+        $idx = $this->findArticle($artnr);
+        if($idx === false) {
             return $this;
         }
-        unset($this->_articlelist[$artnr]);
+        unset($this->_articlelist[$idx]);
         return $this;
     }
     public function setAmount($artnr, $count) {
@@ -73,26 +74,6 @@ class Application_Model_Cart implements Iterator{
             $fTotal += ($entry['count'] * $entry['article']->getPrice());
         }
         return $fTotal;
-    }
-    
-    public function rewind() {
-        $this->_position = 0;
-    }
-
-    public function valid() {
-        return $this->_position < sizeof($this->_articlelist);
-    }
-
-    public function key() {
-        return $this->_position;
-    }
-
-    public function current() {
-        return $this->_articlelist[$this->_position];
-    }
-
-    public function next() {
-        $this->_position++;
     }
 
 }
