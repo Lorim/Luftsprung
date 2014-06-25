@@ -228,3 +228,12 @@ ul .dropdown-menu {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
+.product{
+  transition: 0.05s ease-in-out;
+  
+}
+.product:hover{
+  opacity: 1;
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
+}
