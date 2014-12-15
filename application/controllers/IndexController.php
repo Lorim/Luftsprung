@@ -85,7 +85,7 @@ class IndexController extends Zend_Controller_Action {
                 $mail = new Zend_Mail('UTF-8');
                 $mail->setFrom("luftsprung@luftsprung.lonie.de")
                         ->addTo("admin@lonie.de")
-                        ->setSubject('Neue Kontaktanfrage von ' . $form->getValue('name'));
+                        ->setSubject('Neue Anfrage von ' . $form->getValue('name'));
                 $mail->setBodyHtml($html);
                 $fm = new Zend_Controller_Action_Helper_FlashMessenger();
                 try {
