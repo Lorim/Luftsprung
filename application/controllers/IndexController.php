@@ -88,7 +88,6 @@ class IndexController extends Zend_Controller_Action {
                         ->setSubject('Neue Anfrage von ' . $form->getValue('name'));
                 $mail->setBodyHtml($html);
                 $fm = new Zend_Controller_Action_Helper_FlashMessenger();
-                Zend_Debug::dump($this->getRequest()->getParams());
                 try {
                     $mail->send();
                     $fm->addMessage('Deine Mail wurde erfolgreich versendet');
