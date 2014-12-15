@@ -149,7 +149,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/js/tinymce/tinymce.min.js',
             '/js/bootstrap-treeview.js',
             '/js/bootstrap-select.min.js',
-            '/js/bootstrap-datepicker.de.js',
             '/js/bootstrap-editable.js',
         );
         foreach ($js as $file) {
