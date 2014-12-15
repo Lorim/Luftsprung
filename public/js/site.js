@@ -12,8 +12,6 @@ $(document).ready(function() {
 
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd'       
-    }).on('changeDate', function(e){
-        $('#datum').val(e.format('yyyy-mm-dd'))
     });
 
     $('#subject').change(function() {

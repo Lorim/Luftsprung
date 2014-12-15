@@ -18,10 +18,12 @@
         <p>
             <?php echo $this->form['subject']; ?>
         </p>
+        <?php if($this->form['datum'] != ''): ?>
         <h3>Datum:</h3>
         <p>
             <?php echo $this->form['datum']; ?>
         </p>
+        <?php endif; ?>
         <h3>Nachricht:</h3>
         <p>
             <?php echo $this->form['message']; ?>
