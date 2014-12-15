@@ -136,6 +136,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/css/bootstrap-treeview.css',
             '/css/cart.css',
             '/css/site.css',
+            '/css/bootstrap-editable.css',
+            '/css/bootstrap-select.min.css',
         );
         foreach ($css as $file) {
             $view->headLink()->appendStylesheet($view->baseUrl($file));
@@ -146,6 +148,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/js/bootstrap-notify.js',
             '/js/tinymce/tinymce.min.js',
             '/js/bootstrap-treeview.js',
+            '/js/bootstrap-select.min.js',
+            '/js/bootstrap-datepicker.de.js',
+            '/js/bootstrap-editable.js',
         );
         foreach ($js as $file) {
             $view->headScript()->appendFile($view->baseUrl($file));

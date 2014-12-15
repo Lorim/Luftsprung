@@ -83,7 +83,7 @@ class IndexController extends Zend_Controller_Action {
                 $view->form = $form->getValues();
                 $html = $view->render('kontakt.phtml');
                 $mail = new Zend_Mail('UTF-8');
-                $mail->setFrom("luftsprung@luftsprung.de")
+                $mail->setFrom("luftsprung@luftsprung.lonie.de")
                         ->addTo("admin@lonie.de")
                         ->setSubject('Neue Kontaktanfrage von ' . $form->getValue('name'));
                 $mail->setBodyHtml($html);

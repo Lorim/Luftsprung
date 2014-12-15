@@ -237,3 +237,5 @@ ul .dropdown-menu {
   -webkit-transform: scale(1.04);
           transform: scale(1.04);
 }
+
+#dateelement { display: none; }

@@ -6,12 +6,10 @@ class AdminController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
-        $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-editable.js'));
         $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-datepicker.de.js'));
         $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-select.min.js'));
         $this->view->headScript()->appendFile( $this->view->baseUrl('/js/site.admin.js'));
         
-        $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-editable.css'));
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-select.min.css'));
     }
 

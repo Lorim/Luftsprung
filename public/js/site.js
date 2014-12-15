@@ -10,6 +10,22 @@ $(document).ready(function() {
         type: 'bangTidy'
     }).show();
 
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+
+    $('#subject').change(function() {
+        if ($(this).val() == 'shooting')
+        {
+            $('#dateelement').show();
+        }
+        else
+        {
+            $('#dateelement').hide();
+        }
+
+    });
+
     function initTiny() {
         tinymce.init({
             selector: "#galleryentry",
