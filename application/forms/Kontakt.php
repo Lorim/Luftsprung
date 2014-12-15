@@ -39,6 +39,12 @@ class Application_Form_Kontakt extends Zend_Form {
             )
         ));
         
+        $this->addElement('text', 'datum', array(
+            'label' => 'Datum:',
+            'required' => true,
+            'filters' => array('StringTrim'),
+        ));
+        
         // Den Submit Button hinzufügen
         $this->addElement('submit', 'submit', array(
             'ignore' => true,
