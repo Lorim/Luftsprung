@@ -41,7 +41,7 @@ class Application_Form_Kontakt extends Zend_Form {
         
         $this->addElement('text', 'datum', array(
             'label' => 'Datum:',
-            'required' => true,
+            'required' => false,
             'filters' => array('StringTrim'),
         ));
         
