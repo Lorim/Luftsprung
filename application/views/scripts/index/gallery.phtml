@@ -7,7 +7,10 @@
             'action' => 'gallery',
             'id' => $entry->getId()
                 ), 'gallery');
-        $title = $entry->getTitle()."<br>".$entry->getCreated();
+        $title = $entry->getTitle();
+        if($entry->getCreated() != '0000-00-00') {
+            $title .= "<br>".$entry->getCreated();
+        }
         ?>
         <div class="col-md-3 col-sm-3 col-xs-12 image">
             <a href="<?php echo $url; ?>">
